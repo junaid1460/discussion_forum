@@ -1,0 +1,29 @@
+﻿* {
+margin:0px;padding:0;
+}
+.nav-logo, .nav-navbar {
+text-align:center;width:100%
+}
+.nav-logo,.navbar {
+padding-bottom:8px
+}
+.nav-navbar .navl,.nav-logo .logo span{
+    padding:8px 15px 8px 15px;
+    background:wheat;
+    border-radius:5px;
+    text-shadow:0 1px 1px white;
+    color:rgb(78, 78, 78);font-weight:900;
+    box-shadow:0 0 2px black;
+}
+.nav-navbar {
+    padding:8px 15px 8px 15px;
+}
+    .nav-logo .logo span {
+     box-shadow:none
+    }
+.navbar {
+   padding-bottom:15px;
+}
+    .navbar *::-moz-selection {
+    background:none 
+    }

@@ -1,0 +1,434 @@
+﻿* {
+    position: relative;
+}
+html {
+background:black
+}
+nav {
+z-index:100000;
+}
+#body {
+    background: none;
+    height: 100%;
+}
+body {
+    background: rgb(255,255,255);
+    opacity:0.3;padding:5px
+}
+footer {
+    margin-top: 30px;
+    position: relative;
+    background:linear-gradient(to bottom,rgb(10, 164, 255) ,rgb(0, 154, 255) );
+}
+.inline {
+    display: inline;
+}
+.smooth {
+    border-radius: 5px;
+}
+
+    input[type=checkbox] + label {
+        display: inline-block;
+    }
+.body-back {
+    width: 100%;
+}
+    .body-back img {
+        width: 100%;
+        position: fixed;
+        background-color: rgba(198, 198, 198,0.1);
+        height: 100%;min-height:768px;min-width:768px
+    }
+.navbar-inverse {
+    border: none;
+    transition: all 0.2s ease-in-out;
+    border-radius: 0;
+    text-shadow: 0 1px 1px black;
+}
+    .navbar-inverse:hover {
+    }
+    .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-brand {
+        color: rgb(228, 228, 228);
+        transition: all 0.2s ease-in-out;
+        font-weight: bold;
+        text-shadow: 0 1px 1px gray;
+    }
+    .navbar-inverse .navbar-brand {
+    color:black
+    }
+    .navbar-inverse .navbar-nav > li:last-child > a {
+        border-radius: 0 2px 2px 0 ;margin-left:-1px
+    }
+    .navbar-inverse .navbar-nav > li:first-child  > a{
+        border-radius: 2px 0 0 2px ;margin-left:-1px
+    }
+    .navbar-inverse .navbar-nav > li > a:hover {
+        background: rgb(255, 255, 255);border:none;
+        color:rgb(10, 174, 255)
+    }
+    .navbar-inverse:hover .navbar-brand {
+        background: rgba(0, 0, 0,0.1);
+    }
+
+.nav-dark,footer.footer.footer-default {
+    transition: 0.2s all ease-in-out;
+    background: linear-gradient(to bottom,rgb(10, 164, 255) ,rgb(0, 154, 255) );
+    z-index: 1000;
+    width: 100%;
+    box-shadow: 0 1px 4px rgb(177,177,177);
+    text-shadow: 0 1px 1px black;
+}
+footer.footer.footer-default {
+padding:1px
+}
+nav.nav-dark a.navbar-toggle {
+color:white;border-color:white;padding:6px
+}
+.navbar-collapse {
+
+}
+nav.nclass a.navbar-toggle {
+color:black;border-color:black;
+}
+nav.nclass a.navbar-toggle:hover {
+color:white;border-color:black
+}
+nav .navbar-collapse {
+    background:none;min-width:200px;border:none
+}
+
+@media (max-width:768px) {
+    nav  ul{
+ width:100%
+}
+    nav .navbar-collapse li .navbar-nav li a{
+    color:white
+}
+
+}
+
+
+    .nav-dark .navbar-nav > li > a, .nav-dark .navbar-brand {
+        color: white;
+        transition: all 0.2s ease-in-out;
+        text-shadow: 0 1px 1px black;
+    }
+ .nav-dark .navbar-nav > li > a:hover {
+        text-shadow: 0 1px 1px gray;
+        background:white;
+        color:rgb(10, 174, 255)
+    }
+    .nav-dark:hover .navbar-brand {
+    }
+.navbar-nav li {
+    margin-left: 1px;
+    transition: all 0.3s ease-in-out;
+}
+.footer {
+    box-shadow: 0 -1px 3px black;
+    background:linear-gradient(to bottom,rgb(10, 164, 255) ,rgb(0, 154, 255) );
+    color: white;
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+}
+    .footer .text-muted {
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 1px 1px black;
+    }
+.renderer {
+    background: white;
+    height: 100%;min-height:350px;
+    border-radius:3px;padding:9px
+}
+.renderer-left {
+    padding:0 9px 9px 9px
+}
+.ntsh *,.ntsh{
+text-shadow:none
+}
+
+.navbar-inverse.navbar .nav  .open .dropdown-toggle  {
+background:white;color:rgb(10, 174, 255);border-radius:  3px 3px 0 0 ;
+}
+.nav-dark.navbar .nav  .open .dropdown-toggle,.nav-dark.navbar .nav  .open .dropdown-menu {
+
+text-shadow:none;transition:0.5s all ease-in-out;
+}
+.navbar .nav .open .dropdown-menu {
+  border:none
+}
+.navbar-right {
+    margin-right:26px
+}
+[data-type=list] {
+list-style:none;margin-top:5px
+}
+    [data-type=list] li a,[data-type=list] li{
+    padding:2px;padding-left:5px;
+     background: rgba(255, 255, 255,0.1);width:100%;color:white;
+    }
+        [data-type=list] li[data-active=true] {
+        background: rgb(25, 135, 105);
+        }
+.body-back {
+opacity:0.5
+}
+body {
+background:black;
+opacity:1;
+}
+/*-----home-----*/
+
+.simg {
+        padding:30px;border-radius:50%;
+        background:darkcyan;z-index:1;
+        box-shadow:0 0 11px black
+    }
+    .simg.left-f {
+    }
+    .right-t {
+    text-align:right
+    }
+    .right-f {
+    float:right
+    }
+    .left-t {
+    text-align:left;
+    }
+    .left-f {
+    float:left;
+    }
+    .slide {
+    width:100%;
+    background:black;
+    min-height:350px;position:relative
+    }
+    
+    .lbg {
+    }
+    .mbg {
+    }
+    .nbg.jumbotron {
+       text-align:center
+    }
+
+.jumbotron h1 {
+    font-weight: 900;
+    transition: 0.5s all ease-in-out;
+    color: white;
+    padding:5px
+}
+.wcl {
+    opacity:1;margin-top:11px
+    ;
+}
+    .trns {
+    transition:1s all ease-in-out;
+    }
+
+    .tsh {
+        margin:0 auto;
+        color:red;
+    }
+
+    *::-moz-selection {
+    font-weight:bold;text-shadow:0 0 5px black;color:white;background:none;background:darkcyan
+    }
+    *::selection {
+    font-weight:bold;text-shadow:0 0 5px black;color:white;background:none;background:darkcyan
+    }
+    /*--------------music-----------------*/
+    .music-player-ui {
+            position:fixed;
+            width:100%;height:100%
+            }
+            .music-player-ui .music-player .music-player-head{
+                background:rgb(255, 148, 55);border-radius:0;
+                border:3px solid rgba(0,0,0,0.1);border-bottom:none;
+                box-shadow:0 2px 2px  rgba(0, 0, 0,0.3);
+            }
+            .music-player-ui .music-player .music-player-head .music-title{
+                display:table-cell
+            }
+        .music-player-ui .music-player .music-player-body {
+            border: 3px solid rgba(0,0,0,0.1);
+            border-top: none;
+            height: 200px;
+            overflow-y: scroll;
+            overflow-x: hidden;width:100%
+        }
+            .music-player-ui .music-player .music-player-body .img-thumbnail {
+            min-width:150px;min-height:150px;padding:5px
+            } 
+            .music-player-ui .music-player .music-player-nav {
+                border:3px solid rgba(255,108,55,0.1);border-top:none;border-bottom:none;
+                width:100%;padding-top:5px;
+                min-height:30px; box-shadow:0 25px 0px  rgb(255,108,55);
+                background:rgba(255,108,55,1);text-align:center
+            }
+.music-player-body .album {
+margin:0 auto;background:white
+}
+.music-player-body {
+background:white;
+}
+/*responsive-----start----*/
+
+/*responsive-----close*/
+            .m-nav {
+            display:inline;font-weight:200;border-radius:2px;
+            color:white;cursor:pointer;position:relative
+             ;padding:5px;transition:0.1s all ease-in-out
+            }
+
+            .m-nav:hover{
+                background:rgba(255,108,55,0.71);font-weight:300;
+            }
+.music-footer {
+    position:absolute;
+    width:100%;height:40px;z-index:10000;margin-top:-40px;
+    border-radius:0 0 3px 3px;
+}
+    .play {
+    margin:5px;border-radius:50%;box-shadow:0 0 4px rgba(0,0,0,0.7);margin-top:-25px;float:right
+    }
+    .play:active {
+        box-shadow:0 0 1px rgba(0,0,0,0.7);transition:0.2s all ease;
+    }
+    .music-footer .popup {
+        padding:3px 10px 3px 10px;border-radius:50% 50% 0 0;
+        background:rgba(99, 99, 99,0.5);margin:0 auto
+    }
+.music-player-ui .music-player .music-player-body::-webkit-scrollbar {
+    background:none;width:7px
+}
+.music-player-ui .music-player .music-player-body::-webkit-scrollbar-button {
+    display:none
+}
+.music-player-ui .music-player .music-player-body::-webkit-scrollbar-thumb {
+    background:gray;border-radius:5px;
+}
+.music-player-ui .music-player .music-player-body::-webkit-scrollbar-track {
+   
+}
+.inline {
+display:inline;
+}
+.slide .nbg.jumbotron {
+padding:22px;background:rgba(125, 15, 15,0.4);color:red;z-index:0;
+box-shadow:0 64px 0px rgba(255,108,55,0.2)
+}
+#body {
+background:rgba(123,20,022,0.2)
+}
+.hide {
+display:none
+}
+a.center {
+padding:25px;margin:0 auto;text-align:center;width:100%;
+font-weight:900;font-size:22px
+}
+div.thumbnail {
+    padding:25px
+}
+.goto {
+    padding: 15px;
+    border-radius: 50%;
+    box-shadow: 0 0 2px gray;
+    background-color: white;
+    font-weight: 900;
+    text-decoration: none;
+}
+    .goto:hover {
+        text-decoration:none;
+        background-color:wheat;
+    }
+@media (maxwidth: 768px) {
+    .dropdown-menu li a {
+    color:white;padding:50px
+    }
+}
+@media (min-width: 768px) {
+    .dropdown-menu li a {
+    color:black;padding:5px
+    }
+}
+.navbar {
+padding:0px
+}
+.dropdown.open a {
+box-shadow:none
+}
+hr {
+background-color:black;
+box-shadow:0 0 2px black
+}
+.list-group-item.active,.list-group-item.active:hover,.list-group-item.active:focus{
+background-color:rgb(0, 144, 255);
+background:rgb(0, 144, 255);
+border-radius:0;cursor:default
+}
+.frm a[href],.frm a[href]:active {
+text-decoration:none;font-size:22px;
+color:black
+}
+.goto {
+    background-color:rgb(0, 144, 255);
+background:rgb(0, 144, 255);color:white
+}
+    .goto:hover {
+    color:rgb(0, 144, 255);
+     background:white;border:solid rgb(0, 144, 255) 1px;
+    }
+.dropdown-menu li a{
+    color:rgb(0, 144, 255)
+}
+.list-group .list-group-item {
+color:rgb(0, 144, 255)
+}
+.list-group .list-group-item.active {
+color:white
+}
+
+.label{
+border-radius:2px;
+background:white;
+border:2px rgb(0, 144, 255) solid;
+color:rgb(0, 144, 255)
+}
+.label-warning {
+    border-color:#fc8300;
+    color:#fc8300;
+}
+.panel {
+
+border-radius:2px
+
+}
+.well {
+background:#deecff
+}
+.btn-primary,.btn-primary:hover,.btn-primary:active,.btn-primary:focus {
+border-radius:2px;
+background:rgb(0, 144, 255);
+}
+.alert-danger {
+background:rgb(242, 213, 213);
+}
+.desc {
+color:black
+}
+.footer.list {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 3px;
+    z-index: 0;
+}
+.pin {
+font-size:14pt;color:red
+}
+.l-i {
+margin-top:6px
+}
