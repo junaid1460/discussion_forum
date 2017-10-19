@@ -1,0 +1,87 @@
+﻿@{
+    Layout = "~/views/shared/_layout.cshtml";
+}@{
+    var id = Request["id"];
+    var idvalid = id==null?ujjjyfalse:true;
+    try { int.Parse(id); }
+    catch (Exception e) {
+        Database.Open("defaultconnection").Query("insert into logs([file],[msg]) values('addsub','" + e.Message + "')");
+        idvalid = false; 
+    };
+    if (IsPost && idvalid)
+    {
+        var fname = Request.Form["forum"];
+        var fdesc = Request.Form["desc"];
+        var adm = Request.Form["admin"];
+        var usr = Request.Form["usr"];
+        var gst = Request.Form["gst"];
+        var dsb = Request.Form["isdisabled"];
+        Database db = Database.Open("defaultconnection");
+        
+        var qs = "INSERT INTO [subforums]([Id],[sforum]) VALUES('"+id+"','"+fname+"@"+id+"')";
+        db.Query(qs); 
+        try {
+            var exist = db.QuerySingle("select * from forums where name='" + fname + "'");
+            if(exist==null)
+            {
+                var ids=db.Query("SELECT [pid] FROM subforums WHERE sfrorum='"+fname+"';");
+                var q = "CREATE TABLE [dbo].[" + ids + "@" + id + "]([Id] INT NOT NULL PRIMARY KEY identity(1,1),[ptitle] NVARCHAR(MAX) NULL, [link] NVARCHAR(MAX) NULL, [file] NVARCHAR(MAX) NULL, [postedby] NVARCHAR(MAX) NULL, [date] DATE NULL, [time] TIME NULL);";
+           // db.Query(q);
+          <div class="alert alert-success"><h1>
+              new forum @fname is successfully created
+                                           </h1></div>
+              }
+              else{
+                
+            <div class="alert alert-warning">
+                @if(exist.isdisabled==true)
+                {
+               <h1> the forum <b><em>@fname</em></b> was exist and moved to trash..</h1>
+                }
+                else
+                {
+               <h1> the forum <b><em>@fname</em></b> is exist and avalable</h1>
+                }
+            </div>
+            }}catch(Exception e){
+                Database.Open("defaultconnection").Query("insert into logs([file],[msg]) values('addsub','"+e.Message+"')");
+            }
+    }
+    else {
+        if (!idvalid)
+        {
+            <div class="alert alert-danger"><h1>
+              there is some problem with url parameters
+                                           </h1></div>
+        }
+        else{    
+    <div class="jumbotron">
+         <form method="post">
+             <input type="hidden" value="@id" name="id" />
+     <ul class="list-group">
+         
+        <li class="list-group-item active">fill informations</li>
+        <li class="list-group-item">name <input  required="required"  type="text" name="forum"  style="width:100%"/></li>
+        <li class="list-group-item">Descriptions :<textarea required="required" style="width:100%;resize:none;height:100px" name="desc" ></textarea></li>
+        <li class="list-group-item">who can post
+            <ul>
+                <li><input type="checkbox" name="admin" value="admin" checked="checked"/>admin</li>
+                <li><input type="checkbox" name="usr" value="user"/>User</li>
+                <li><input type="checkbox" name="gst" value="guest"/>Guest</li>
+            </ul>
+        </li>
+         
+         <li class="list-group-item">
+             options : 
+             <ul>
+                 <li><input type="checkbox" name="isdisabled" />is disabled</li>
+             </ul>
+         </li>
+        <li class="list-group-item"><input type="submit" /></li>
+    </ul>
+ </form>
+    </div>
+}
+    }
+
+ }

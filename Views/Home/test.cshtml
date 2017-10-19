@@ -1,0 +1,67 @@
+﻿@{Layout = "";}
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/site.js"></script>
+        <script type="text/javascript" src="~/Content/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="~/Content/css/bootstrap-theme.min.css" />
+        <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/Content/Site.css" />
+    </head>
+    <body>
+        <div class="music-player-ui">
+            <div class="panel panel-primary music-player">
+            <div class="panel-heading music-player-head ">
+              <h3 class="panel-title music-title inline">Music</h3>
+                <img src="~/Content/images/play.png" class="play inline"/>
+            </div>
+                <div class="music-player-nav">
+                    <div class="m-nav">PlayLists</div>
+                     <div class="m-nav">Songs</div>
+                     <div class="m-nav">Albums</div>
+                    <div class="m-nav">Artists</div>
+                </div>
+            <div class="panel-body music-player-body container">
+                <div class="album">
+                      <img src="~/Content/icons/Entypo_2139(282)_64.png" class="img-thumbnail" /> 
+                   <img src="~/Content/icons/Entypo_2139(282)_64.png" class="img-thumbnail" /> 
+                   <img src="~/Content/icons/Entypo_2139(282)_64.png" class="img-thumbnail" /> 
+                     <img src="~/Content/icons/Entypo_2139(282)_64.png" class="img-thumbnail" /> 
+                   <img src="~/Content/icons/Entypo_2139(282)_64.png" class="img-thumbnail" /> 
+                   <img src="~/Content/icons/Entypo_2139(282)_64.png" class="img-thumbnail" /> 
+                     <img src="~/Content/icons/Entypo_2139(282)_64.png" class="img-thumbnail" /> 
+                   <img src="~/Content/icons/Entypo_2139(282)_64.png" class="img-thumbnail" /> 
+                   <img src="~/Content/icons/Entypo_2139(282)_64.png" class="img-thumbnail" /> 
+                     <img src="~/Content/icons/Entypo_2139(282)_64.png" class="img-thumbnail" /> 
+                   <img src="~/Content/icons/Entypo_2139(282)_64.png" class="img-thumbnail" /> 
+                   <img src="~/Content/icons/Entypo_2139(282)_64.png" class="img-thumbnail" /> 
+               </div>
+             </div>
+                    
+              
+         </div>
+            
+        </div>
+        <style>
+            
+        </style>
+        <script type="text/javascript">
+            $(window).resize(function () {
+                $(".music-player").css({ 'height': $(this).height() + "px" });
+            })
+            $(".play").ready(function () {
+                $(this).css({ 'margin-top': "-" + $(this).height() + "px" });
+                console.log("dsdsdsd");
+            });
+            $(function () {
+                imgwid = $(".album .img-thumbnail").width();
+                $(window).resize(function () {
+                    var hh = $(".album").width();
+                    var he = $(".album .img-thumbnail");
+                   
+                });
+            });
+        </script>
+    </body>
+</html>

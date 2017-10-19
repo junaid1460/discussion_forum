@@ -1,0 +1,156 @@
+﻿@*layot for tutorials common*@
+@model Crook.Models.LoginModel
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" /><!--favicon(site-icon)-->
+        <meta name="viewport" content="width=device-width,initial-scale=1" /><!--responsive--layout-->
+        <!--Dependecies[jquery,bootstrap,custom]-->
+        <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="~/Content/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+        <script type="text/javascript" src="~/content/Home/js/scripts.js"></script>
+        <link rel="stylesheet" href="~/content/Home/css/styles.css" />
+        <!----END-Dependecies-->
+    </head>
+    <body>
+
+        <div id="logrg" class="container" tabindex="0" style="overflow-y:hidden;width:100%;background:rgb(65,65,65);box-shadow:0 0 22px black inset;z-index:1000;display:none">
+           <button type="button" id="close" class="btn-close btn btn-lg btn-primary" style="border-radius:0;width:100%">Close</button>
+            <div class="login-reg col-md-7 col-sm-7" style="padding-bottom:5px;padding-top:9px;margin:0 auto;" >
+            <form method="post" action="@Session["sURL"]/account/login">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+            <ul class="list-group">
+            <li class="list-group-item">
+            <input type="email" class="form-control" placeholder="Email" name="email"/></li>
+            <li class="list-group-item"><label for="login"><input type="radio" id="login" name="rl" />I'm already registered</label>
+            <label for="reg"><input type="radio" id="reg" name="rl" />Not yet</label></li>
+                <li class="list-group-item">
+                    <input type="password" class="form-control"  placeholder="Password" name="password"/>
+                </li>
+                <li class="list-group-item">
+                   <label for="rem"><input type="checkbox" id="rem"  name="rememberme" /> remember me</label>
+                </li>
+                <li class="list-group-item">
+                    <input type="submit" class="form-control" value="submit"/>
+                </li>
+            </ul>
+           </form>
+        </div>
+        </div>
+        <script>
+            $(window).resize();
+            res = function () {
+                $("#logreg").css({ "height": $(window).height() + "px" });
+            }; res();
+        </script>
+        <style>
+            #logrg:focus {
+             box-shadow: 0 0 5px  white;
+            }
+        </style>
+        <div id="bodym" style="background:rgb(200,200,200)">
+<nav class="navbar navbar-static">
+   <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="@Session["sURL"]" target="ext"><b>crookStudio</b></a>
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="glyphicon glyphicon-chevron-down"></span>
+      </a>
+    </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">  
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forums<span class="caret"></span></a>
+            <ul class="dropdown-menu" style="width:100%">
+              <li><a href="#">C Sharp forums</a></li>
+              <li><a href="#">Java forums</a></li>
+              <li><a href="#">Android forums</a></li>
+              <li><a href="#">HTML forums</a></li>
+              
+            </ul>
+          </li>
+        </ul>
+          @if (Request.IsAuthenticated) {
+    <text>
+     <ul class="nav navbar-nav navbar-right">
+        <li>    <div style="display:none">
+ @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"})) {
+            @Html.AntiForgeryToken()
+         
+        }
+        </div>
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+         <li class="dropdown ntsh">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <span class="glyphicon glyphicon-user"></span> 
+                  <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                
+                <li><a href="@Session["sURL"]/account/alerts">Alerts</a></li>
+                <li><a href="@Session["sURL"]/account/manage">Manaage</a></li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()" >Log out</a></li>
+              </ul>
+            </li>
+     </ul>
+
+    </text>
+} else {
+        <ul class="nav navbar-right navbar-nav">
+         
+          <li class="dropdown" id="logbtn">
+            <a href="#"  data-toggle="dropdown"><b>login/register</b><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-up"></i></a>
+     
+          </li>
+        </ul>
+}
+
+      </div>
+    </div>
+</nav><!-- /.navbar -->
+
+
+
+<!-- Begin Body -->
+<div class="container" id="bdy">
+	<div class=" row">
+      		<!-- left side column -->
+  			<div class="col-md-3" id="sidebr">
+              	<div class="panel panel-default" id="spanel">
+                <div class="panel-heading" style="background:#808080;color:white">Content</div> 
+                <div class="panel-body">
+      			@RenderSection("content", false)
+                </div>
+              </div>
+      		</div>
+      		<div class="col-md-9 " id="content">
+            	<div class="panel" style="box-shadow:0 0 3px gray" id="cpanel">
+    			<div class="panel-heading" style="background-color:#111;color:#fff;">Description</div>   
+              	<div class="panel-body">
+               
+                @RenderBody()
+                  </div><!--/panel-body-->
+                </div><!--/panel-->
+              	<!--/end right column-->
+      	</div> 
+        <div class="col-md-3">
+              <div class="panel" id="midCol">
+                <div class="panel-heading" style="background-color:#555;color:#eee;">New Stories</div> 
+                <div class="panel-body">
+                    @RenderSection("browsersupport", false)
+                   @RenderSection("stories", false)
+               </div><!--/panel-->
+      		</div>
+  	</div>
+</div>
+    </div>
+<footer>
+
+</footer>
+            </div>
+        @RenderSection("scripts",false)
+            </body>
+</html>

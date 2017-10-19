@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title </title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/site.js"></script>
+        <script type="text/javascript" src="~/Content/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="~/Content/css/bootstrap-theme.min.css" />
+        <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/Content/Site.css" />
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+
+    <body>
+    
+               
+        
+        @Html.Partial("_navPartial")
+        
+        <div id="body" class="body container  " style="background:rgb(244, 244, 244);padding:0">
+       
+            @RenderSection("header",false)
+       
+                                 @RenderBody()
+        </div>
+        <footer class="footer footer-default" id="foot">
+             <div class="container right">
+                 <div class="renderer-left col-sm-3" >
+                 <a href="www.facebook.com"> <img src="~/Content/icons/Entypo_f30e(99)_48.png"  /></a>
+                 <a href="www.twitter.com"><img src="~/Content/icons/Entypo_f309(107)_48.png"  /></a>
+                 <a href="www.plus.google.com"><img src="~/Content/icons/Entypo_f30f(100)_48.png"  /></a>           
+                 </div>
+                 
+             </div>
+        </footer>
+        @RenderSection("scripts", required: false)
+        <script type="text/javascript">
+            $("footer .list-group li").addClass("list-group-item");
+        </script>
+        <style>
+            #body,body {
+            background:rgb(232,232,232)
+            }
+        </style>
+        <script>
+            $(window).scroll(nav);
+    function nav() {
+        if ($("nav").offset().top < 50) {
+            $("nav").addClass("nclass");
+        } else {
+            $("nav").removeClass("nclass");
+        }
+    };
+    nav();
+   
+</script>
+<style>
+    .nclass {
+        padding:22px;background:none;
+    }
+        .nclass .navbar-nav {
+        background:rgb(0, 144, 255);border-radius:3px
+        }
+</style>
+    </body>
+</html>
+

@@ -1,0 +1,51 @@
+﻿ <div class="container" id="bdy">
+	   <div class=" row">
+      		<!-- left side column -->
+  			<div class="col-md-3 col-sm-3" id="sidebr">
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+             Java
+            </a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/java/javaintro'>Introduction</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/java/javadatatypes'>Data Types</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/java/javaclass'>Class</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/java/javacontrol'>Controls and Loops</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/java/javaexception'>Exception Handling</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/java/javainheritance'>Inheritance</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/java/javainterfaces'>Interfaces</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/java/javapackages'>Packages</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/java/javathreads'>Threads</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/java/javaapplets'>Applets</a>
+
+          </div>
+              </div>
+      		
+      		<div class="col-md-9 col-sm-9" id="content">
+            	<div class="panel" style="box-shadow:0 1px 2px gray" id="cpanel">  
+              	<div class="panel-body">
+               
+          
+                
+@{
+
+     var p = ViewBag.id;
+     p = Convert.ToString(p);
+     p = p == "System.Object" ? "javaintro" : p;
+     try{
+    @RenderPage(Href("~/resource/java/"+p+".cshtml"));
+    
+    }
+    catch(Exception e){
+    <h1>the requested page not found </h1>
+    }
+    
+    }
+
+
+  </div><!--/panel-body-->
+                </div><!--/panel-->
+              	<!--/end right column-->
+      	</div> 
+     
+       </div>
+    </div>

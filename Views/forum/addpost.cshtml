@@ -1,0 +1,121 @@
+﻿@{
+    //:GET here we initialise <form>
+   if(! WebSecurity.IsAuthenticated){
+       Response.Redirect("~/Account/login");
+   }
+   // ***/addpost/forum_id-type
+   var frm = ViewBag.param;
+   var forum = "";
+   var type = "";
+   try{
+   var frmtp = (Convert.ToString(frm) + "").Split('-');
+    forum = frmtp[0];
+    type = frmtp[1];
+       }catch(Exception e){
+           Response.Redirect("~/error?"+frm+"&"+e.Message);
+           
+       }
+   var c = Convert.ToUInt32(type) == null ? 0 : Convert.ToUInt32(type);
+   int xx = (int)c;
+   switch (xx)
+   {
+       case 1:
+           type = "general";
+           break;
+
+       case 2:
+           type = "QA";
+           break;
+
+       case 3:
+           type = "thirddev";
+           break;
+
+       case 4:
+           type = "origdev";
+           break;
+
+       case 5:
+           type = "projects";
+           break;
+
+       default:
+           Response.Redirect("~/error?"+c);
+           break;
+   }
+    var posterror = "";var titlerror = "";//specific client side problems
+    var pf = "";//[post forum]the forum in which content posted--cookies added during redirecting
+    var pid = "";
+    if (IsPost)//only if posting
+    {
+        var x = true;//error bit
+        var title = Request.Form["title"];//title of post
+        var post = Request.Unvalidated.Form["editor"];//the post content .Unvalidated--allows special charectors
+        //client side error calculation
+        if (title == ""||title==null)//null calculation
+        {
+            titlerror = "Title should not be empty";
+            x = false;//add error
+        }
+        else if (post == "" || post == null)//null calculation
+        {
+           posterror = "Post should have atleast 20 charecters";
+           x = false;//add error
+        }
+        else
+        {
+            if (post.Length < 10)
+            {//null calculation
+              posterror = "Post should have atleast 10 charecters";
+              x = false;//add error
+          }
+          if (title.Length < 3)
+          {
+              //null calculation
+              titlerror = "title should have atleast 3 charecters";
+              x = false;//add error
+          }
+          
+        }
+        if(x){//everything fine
+            pf = Request.Form["pf"];//[post forum]the forum in which content posted--cookies added during redirecting
+            pid = Request.Form["pid"];//[sub forum]current thread --cookies added during redirecting
+            var ttd = Request.Form["ttd"];//[hiideninput] in digits--forum type 
+            Database db = Database.Open("defaultconnection");
+            var qqq = "INSERT INTO "+pf+"([Id],[time],[post],[like],[reply],[latestrep],[title],[postedIn]) values('"+WebSecurity.CurrentUserId+"','"+DateTime.Now+"','"+post+"','0','0','none','"+title+"','"+pid+"')";
+            db.Query(qqq);
+            var rs = db.Query("Select [pid] from "+pf+" where [id]='"+WebSecurity.CurrentUserId+"'");
+            var ls = "";
+            foreach(var r in rs){
+                ls =Convert.ToString(r.pid);
+            }
+            Response.Redirect("~/forum/showpost/"+pid+"-"+ls+"-"+ttd);
+        }
+    }
+    }
+        <script type="text/javascript" src="~/ckeditor/ckeditor.js"></script>
+        <script type="text/javascript" src="~/ckeditor/adapters/jquery.js"></script>
+    @if (titlerror.Length > 0)
+    { 
+    <div class="alert alert-warning">@titlerror</div>
+    }
+<form method="post"  action="@Session["sURL"]/forum/addpost/@frm">
+    <input type="hidden" value="@forum" name="pid"/>
+    <input type="hidden" value="@type" name="pf"/>
+    <input type="hidden" value="@xx" name="ttd" />
+	<script>
+	    $(document).ready(function () {   
+	        $('#edit').ckeditor();        
+	    });
+	</script>
+    <input type="text" placeholder="Title..." required="required" class="form-control" name="title"/>
+    <hr />
+    @if (posterror.Length > 0)
+    { 
+    <div class="alert alert-warning">@posterror</div>
+    }
+		<textarea cols="40" id="edit" name="editor" rows="10" >
+		</textarea>
+    <hr />
+    <input type="submit" class="form-control" value="post"/>
+    </form>

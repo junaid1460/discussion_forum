@@ -1,0 +1,9 @@
+﻿@{
+    if(!IsAjax){
+        Layout = "~/Views/shared/_layout-4h.cshtml";
+             }
+    var weburl = Request.Url.Port.ToString();
+    weburl = weburl == "80" ? "" : ":" + weburl;
+    weburl = Request.Url.Host + weburl;
+    Session["sURL"] = "http://"+weburl;
+}

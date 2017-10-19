@@ -1,0 +1,140 @@
+﻿@try
+{
+    
+    var frm = ViewBag.forum;
+    Database db = Database.Open("defaultconnection");
+    var q = "select * from forums where [Id]='" + frm + "'";
+    var s = db.QuerySingle(q);
+    ViewBag.name=s.name;
+    var type = new string[5];
+    type[0] = "general";
+    type[1] = "QA";
+    type[2] = "thirddev";
+    type[3] = "origdev";
+    type[4] = "projects";
+      <div class="list-group">
+        <a href="#" class="list-group-item active">
+              <h4 class="list-group-item-heading">Forums</h4>
+         </a>
+          <div  class="list-group-item">
+              <a href="@Session["sURL"]/forum/list/@frm-1">
+               <span class="glyphicon glyphicon-chevron-right"></span>
+              <b>@s.name</b> General</a>
+              <p class="desc">For general comments and guides relating to the @s.name</p>
+                <div class="footer list">
+                   <span class="left-f">Total Threads :@db.QueryValue("select count(*) from "+type[0]+" where [postedIn]='"+frm+"'") | </span> 
+                   <span style="padding-left:5px"> Total replies :@db.QueryValue("select count(*) from replies where [Forum]='"+frm+"' and [RPOSTTYPE]='1'")</span>
+               </div>
+          </div>
+          <div  class="list-group-item"> 
+              <a href="@Session["sURL"]/forum/list/@frm-2">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+              <b>@s.name</b> Q&A, Help & Troubleshooting</a>
+              <p class="desc">This forum is for all of questions about @s.name Development and improvements, If you need help truoble shooting a problem, please be specific as possible while you are describing, and please iclude the status of your development</p>
+          <div class="footer list">
+                   <span class="left-f">Total Threads :@db.QueryValue("select count(*) from "+type[1]+" where [postedIn]='"+frm+"'") | </span> 
+                   <span style="padding-left:5px"> Total replies :@db.QueryValue("select count(*) from replies where [Forum]='"+frm+"' and [RPOSTTYPE]='2'")</span>
+               </div>
+          </div>
+          <div  class="list-group-item"> 
+              <a href="@Session["sURL"]/forum/list/@frm-3">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+              <b>@s.name</b> 3rd party Develeopment</a>
+              <p class="desc">Discuss the @s.name projects of your own in this forum</p>
+          <div class="footer list">
+                   <span class="left-f">Total Threads :@db.QueryValue("select count(*) from "+type[2]+" where [postedIn]='"+frm+"'") | </span> 
+                   <span style="padding-left:5px"> Total replies :@db.QueryValue("select count(*) from replies where [Forum]='"+frm+"' and [RPOSTTYPE]='3'")</span>
+               </div>
+          </div>
+          <div  class="list-group-item">
+              <a href="@Session["sURL"]/forum/list/@frm-4">
+               <span class="glyphicon glyphicon-chevron-right"></span>
+               original <b>@s.name</b> development</a>
+              <p class="desc">This forum is for official development of @s.name</p>
+              <div class="footer list">
+                   <span class="left-f">Total Threads :@db.QueryValue("select count(*) from "+type[3]+" where [postedIn]='"+frm+"'") | </span> 
+                   <span style="padding-left:5px"> Total replies :@db.QueryValue("select count(*) from replies where [Forum]='"+frm+"' and [RPOSTTYPE]='4'")</span>
+              
+              </div>
+          </div>
+          <div  class="list-group-item">
+              <a href="@Session["sURL"]/forum/list/@frm-5">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+              <b>@s.name</b> projects</a>
+              <p class="desc">Host the @s.name projects Here, please keep the content of post clean and more readable as possible</p>
+              <div class="footer list">
+                   <span class="left-f">Total Threads :@db.QueryValue("select count(*) from "+type[4]+" where [postedIn]='"+frm+"'") | </span> 
+                   <span style="padding-left:5px"> Total replies :@db.QueryValue("select count(*) from replies where [Forum]='"+frm+"' and [RPOSTTYPE]='5'")</span>
+               </div>
+          </div>
+      </div>
+}
+catch (Exception e) {
+    Response.Redirect("~/error?"+ViewBag.forum);
+}
+@section header{
+    @{
+        }
+    <div class="header">
+            <ul class="track liner">
+      <li>  <a>new Topic</a><a>Recent posts</a><a>latest news</a></li>
+    </ul>
+    <div class="w100 track" style="background:white">
+        <a href="@Session["sURL"]/"><span class="glyphicon glyphicon-home"></span></a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <a href="@Session["sURL"]/forum/">Forums</a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <a >@ViewBag.name</a>
+    </div>
+
+    
+        </div>
+   <style>
+    .container.list-group-item {
+    width:100%
+    }
+    .thumbnail {
+    width:50px;height:50px
+    }
+    .pstby {
+    box-shadow:0 0 3px gray;width:95%;
+    border-radius:3px
+    }
+    .inline li{
+    display:inline
+    }
+    .w100 {
+        width:100%
+    }
+    .right-f {
+    float:right
+    }
+    .track a:after {
+    content:"   "
+    }
+    .track a:before {
+    content:"   "
+    }
+    .liner {
+    width:100%;
+    background:#313131;
+    color:white;
+    padding:9px;list-style:none
+    }
+    body {
+    padding:5px
+    }
+        .track a {color:#000000
+        }
+        .liner a {
+        color:white
+        }
+    .title {
+    background:white;border-radius:3px;box-shadow:0 0 4px black;
+    padding:3px;width:100%;margin:0 auto;margin-top:-6px;text-align:center
+    }
+    .header {
+        padding-bottom:10px;color:#0094ff
+    }
+</style>
+    }

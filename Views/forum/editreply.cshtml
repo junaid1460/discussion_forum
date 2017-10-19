@@ -1,0 +1,45 @@
+﻿@{
+    //:GET here we initialise <form>
+   var db = Database.Open("defaultconnection");
+   var q = "select * from replies where [rid]='" + ViewBag.rid + "'";
+   var rslt = db.QuerySingle(q);
+   if(rslt.RBY != WebSecurity.CurrentUserId.ToString()){
+       Response.Redirect("~/error");
+   }
+   ViewBag.post = rslt.post;
+   if(IsPost){
+       var post = Request.Unvalidated.Form["post"]; 
+       if (post.Length == 0)
+       {
+           ViewBag.postError = "too less charecters";
+           
+       }
+       else{
+       q = "UPDATE replies SET [post]='" +post + "' WHERE [RID]='" + ViewBag.param + "'";
+       db.Query(q);
+       var r = Request["r"];
+           Response.Redirect(r==null?"~/":r);
+       }
+   }
+   }
+        <script type="text/javascript" src="~/ckeditor1/ckeditor.js"></script>
+        <script type="text/javascript" src="~/ckeditor1/adapters/jquery.js"></script>
+ 
+<form method="post">
+    
+	<script>
+	    $(document).ready(function () {   
+	        $('#edit').ckeditor();        
+	    });
+	</script>
+   
+    @if (ViewBag.postError!=null)
+    { 
+    <div class="alert alert-warning">@ViewBag.postError</div>
+    }
+		<textarea cols="40" id="edit" name="post" rows="20" >
+            @ViewBag.post
+		</textarea>
+    <hr />
+    <input type="submit" class="form-control" value="save"/>
+    </form>

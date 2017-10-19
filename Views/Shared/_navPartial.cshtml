@@ -1,0 +1,50 @@
+﻿<nav class="navbar navbar-inverse navbar-fixed-top">
+               
+                    <a class="navbar-brand" href="@Session["sURL"]">
+                       crookstudio
+                    </a>
+                
+    <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="glyphicon glyphicon-chevron-down"></span>
+      </a>
+                      <div class="navbar-collapse collapse">
+                        <ul id="menu" class="nav  navbar-nav">
+                            <li><a href="@Session["sURL"]"><span class="glyphicon glyphicon-home"></span></a></li>
+                            <li class="dropdown ntsh">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <span class="glyphicon glyphicon-info-sign"></span>   Tutorials 
+                  <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                
+                <li><a href="@Session["sURL"]/tutorials/java"><span class="glyphicon glyphicon-info-sign"></span> java</a></li>
+                <li><a href="@Session["sURL"]/tutorials/c"><span class="glyphicon glyphicon-info-sign"></span> c</a></li>
+                <li><a href="@Session["sURL"]/tutorials/css"><span class="glyphicon glyphicon-info-sign"></span> css</a></li>
+                <li><a href="@Session["sURL"]/tutorials/xml"><span class="glyphicon glyphicon-info-sign"></span> xml</a></li>
+                <li><a href="@Session["sURL"]/tutorials/xslt"><span class="glyphicon glyphicon-info-sign"></span> xslt</a></li>
+                <li><a href="@Session["sURL"]/tutorials/html"><span class="glyphicon glyphicon-info-sign"></span> html</a></li>
+              </ul>
+            </li>
+                             <li class="dropdown ntsh">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                 <span class="glyphicon glyphicon-info-sign"></span>   Forums
+                  <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                
+                <li><a href="@Session["sURL"]/forum/show/21007"><span class="glyphicon glyphicon-info-sign"></span> C forums</a></li>
+              <li><a href="@Session["sURL"]/forum/show/11007"><span class="glyphicon glyphicon-info-sign"></span> Java forums</a></li>
+              <li><a href="@Session["sURL"]/forum/show/21008"><span class="glyphicon glyphicon-info-sign"></span> css forums</a></li>
+              <li><a href="@Session["sURL"]/forum/show/21009"><span class="glyphicon glyphicon-info-sign"></span> HTML forums</a></li>
+                <li><a href="@Session["sURL"]/forum"><span class="glyphicon glyphicon-arrow-right"></span> see all</a></li>
+              </ul>
+            </li>
+                             
+                                @if (Crook.MJCrook.isAdmin()) { 
+                            
+                            <li><a href="@Session["sURL"]/admin">Admin contolls</a></li>
+                            }
+                        </ul>
+                       @Html.Partial("_LoginPartial")
+                      </div>
+        </nav>

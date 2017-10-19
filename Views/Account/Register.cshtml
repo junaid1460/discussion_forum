@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Register";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Create a new account.</h2>
+</hgroup>
+@using System.Text.RegularExpressions
+@if(IsPost){
+    
+    var UserName = Request.Form["UserName"];
+    var Password = Request.Form["Password"];
+    var email = Request.Form["email"];
+    var IsValid = true;
+    var r =  new Regex(@"[\s\S]*\@[\s\S]*\.[\w]*");
+    var r1 = new Regex(@"[\,\?\/\\\{\}\[\]\|\)\(\^\%\!\~\`\&\+\=]");
+    if (!r.IsMatch(email)) { 
+        IsValid=false;
+     <div class="alert alert-danger">invalid email</div>
+    }
+    if (r1.IsMatch(UserName)) { 
+        IsValid=false;
+     <div class="alert alert-danger">invalid UserName</div>
+    }
+    if (Password == "" || Password == null || Password.Length < 6 )
+    {
+        IsValid = false;
+        <div class="alert alert-danger">your password should have atleast 6 charectors</div>
+       
+    }
+    if (UserName == "" || UserName == null || UserName.Length < 3 )
+    {
+        IsValid=false;
+     <div class="alert alert-danger">your Username should have atleast 3 charectors</div>
+    }
+    if (IsValid)
+    {
+        // Attempt to register the user
+        try
+        {
+            
+            <div class="alert alert-success">entered try</div>
+            WebSecurity.CreateUserAndAccount(UserName, Password);
+            WebSecurity.Login(UserName, Password);
+            Response.Redirect("~/account/yourdetails");
+            Database.Open("defaultconnection").Query("UPDATE UserProfile SET [email]='"+UserName+"'");
+        }
+        catch (MembershipCreateUserException e)
+        {
+         <div class="alert alert-danger"> @Crook.Controllers.AccountController.ErrorCodeToString(e.StatusCode);</div>
+        }
+    }
+    
+}
+<div class="col-md-7">
+ <form action="/Account/Register" method="post">
+      @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+  <fieldset>
+        <legend>Registration Form</legend>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <label for="UserName">User name</label>
+                <input  class="form-control" required="required" data-val="true" data-val-required="The User name field is required." id="UserName" name="UserName" type="text" value="" />
+            </li>
+            <li class="list-group-item">
+                <label for="Email">Email</label>
+                <input  class="form-control" data-val="true" data-val-required="The User name field is required." id="Email" name="email" type="email" value=""  required="required"/>
+            </li>
+            <li  class="list-group-item">
+                <label for="Password">Password</label>
+                <input class="form-control" required="required" data-val="true" data-val-length="The Password must be at least 6 characters long." data-val-length-max="100" data-val-length-min="6" data-val-required="The Password field is required." id="Password" name="Password" type="password" />
+            </li>
+        </ul>
+        <input type="submit" value="Register" class="form-control btn btn-success"/>
+    </fieldset>
+</form>
+
+    </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

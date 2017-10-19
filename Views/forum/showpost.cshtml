@@ -1,0 +1,382 @@
+﻿ @{
+     if (!WebSecurity.IsAuthenticated)
+     {
+         Response.Redirect("~/account/login");
+     }
+     }
+<script type="text/javascript" src="~/ckeditor1/ckeditor.js"></script>
+ <script type="text/javascript" src="~/ckeditor1/adapters/jquery.js"></script>
+ <script>
+     $(document).ready(function () {
+         $('#editor').ckeditor();
+     });
+	</script>
+@{
+    
+    var frm = ViewBag.post;
+    var frmpsttp = (Convert.ToString(frm) + "").Split('-');
+    var forum = frmpsttp[0];
+    var post = frmpsttp[1];
+    var type = frmpsttp[2];
+    var c = Convert.ToInt32(type) == null ? 0 : Convert.ToInt32(type);
+    var tp = c;
+    int x = (int)c;
+    var ftype = "";
+    switch (x)
+    {
+        case 1:
+            type = "general";
+            ftype = "General";
+            break;
+
+        case 2:
+            type = "QA";
+            ftype = "Q&A, Help & Troubleshooting";
+            break;
+
+        case 3:
+            type = "thirddev";
+            ftype = "3rd party develeopment";
+            break;
+
+        case 4:
+            type = "origdev";
+            ftype = "Oringinal Development";
+            break;
+
+        case 5:
+            type = "projects";
+            ftype = "Projects";
+            break;
+
+        default:
+            type = "list-all";
+            Response.Redirect(@"~\error");
+            break;
+    }
+    var db = Database.Open("defaultconnection");
+    var q = "Select * from " + type + " where [postedIn]='" + forum + "' and [pId]='" + post + "'";
+    var rslt = db.QuerySingle(q);
+    if (rslt == null)
+    {
+        Response.Redirect("~/error");
+    }
+    }
+<div class="list-group " style="padding-right:20px;background:white;width:100%">
+   
+<div class="container list-group-item active" >
+    @{
+        var postedby = rslt.Id;
+        var prof = db.QuerySingle("Select UserName from UserProfile where UserId='" + postedby + "'");
+        var profExt = db.QuerySingle("select * from profileExt where [Id]='" + postedby + "'");
+      
+        }
+    <div class="col-sm-2 ">
+        <img class="thumbnail" src="~/Content/icons/Entypo_d83d(52)_64.png"/>
+    </div>
+    <div class="col-sm-4">
+        <label><a href="#">@prof.UserName</a></label>
+    </div>
+    
+   
+</div>
+<div class="container list-group-item" >
+    @Html.Raw(rslt.post)
+    
+</div>
+<div class="container list-group-item active" >
+    <ul class=" pager">
+    <li id="next" style="float:left" >@rslt.time <a href="#">Report</a></li>
+     <li class="" id="previous">
+         @{
+             var ql = "select * from Likes where [PID]='" + rslt.pId + "'and [forumID]='" + forum + "'and [Ftype]='" + c + "'";
+             var liked = db.QuerySingle(ql);
+             if (liked == null)
+             {
+         <a href="@Session["sURL"]/forum/like/0-@rslt.pId-@forum-@c-@rslt.Id?r=showpost/@frm">Like</a>
+             }
+             else
+             {
+         <a href="@Session["sURL"]/forum/unlike/0-@rslt.pId-@forum-@c?r=showpost/@frm">Unlike</a>
+         
+             }
+         }
+</ul>
+</div>
+</div>
+<hr />
+<div id="replies" class="list-group">
+    @{
+        var qr = "SELECT * FROM replies WHERE [RPOST]='" + rslt.pID + "' and [RPOSTTYPE]='" + c + "'";
+        var qc = "SELECT COUNT(*) FROM replies WHERE [RPOST]='" + rslt.pID + "' and [RPOSTTYPE]='" + c + "'";
+        var replies = db.Query(qr);
+        var count = 1;
+        int totrep = Convert.ToInt32(db.QueryValue(qc));
+        var pages = (totrep / 10) + ((totrep % 10) > 0 ? 1 : 0);
+        var frmm = 1;
+        }
+    
+      <div>
+          <style>
+              .list-group-item.active {
+              background:#0094ff;color:white;padding-bottom:0;padding-top:0;
+              }
+              .list-group-item.active:hover {
+              background:#0094ff;
+              }
+              .list-group-item.active.foot {
+              color:white;padding-bottom:0;padding-top:0;
+              background:white;
+              }
+              .list-group-item.active.foot:hover {
+              background:#0094ff;
+              }
+              
+             input[type=button] {
+              background:#c8c8c8;font-weight:500;
+              color:black;text-shadow:0 1px 1px white;border:none;
+
+              }
+             input.current {
+              background-color:#313131;
+              color:white;text-shadow:0 1px 1px #c8c8c8
+              }
+          </style>
+          <ul  class="list-group">
+             @if (pages > 1)
+             {
+                 if (pages <= 7)
+                 {
+                 <li style="list-style:none" id="copy">
+                  <a ><input type="button" class="current"  value="1"/></a>
+                       @for (int i = 2; i <= pages; i++)
+                       { 
+               <a  @if (i != frmm)
+                   {<text>href="@Session["sURL"]/forum/replies/@forum-@post-@tp-@i"</text>} ><input type="button" @if (i == frmm)
+                                                                                                                  {<text>class="current"</text>} value="@i"/></a>
+                       }
+                  
+                 @if (pages > 1)
+                 { 
+                 <a href="@Session["sURL"]/forum/replies/@forum-@post-@tp-2" ><input type="button" value="next"/></a>
+                 }
+                  
+              </li>
+                 }
+                 else
+                 {
+              <li style="list-style:none"  id="copy">
+                  <a href="@Session["sURL"]/forum/showpost/@forum-@post-@tp"><input type="button" class="current"  value="1"/></a>
+                       @for (int i = 2; i <= 3; i++)
+                       { 
+               <a  @if (i != frmm)
+                   {<text>href="@Session["sURL"]/forum/replies/@forum-@post-@tp-@i"</text>} ><input type="button" @if (i == frmm)
+                                                                                                                  {<text>class="current"</text>} value="@i"/></a>
+                       }
+                  <span class="glyphicon glyphicon-arrow-right"></span>
+                  
+                     @for (int i = pages - 3; i <= pages; i++)
+                     { 
+               <a  @if (i != frmm)
+                   {<text>href="@Session["sURL"]/forum/replies/@forum-@post-@tp-@i"</text>} ><input type="button" @if (i == frmm)
+                                                                                                                  {<text>class="current"</text>} value="@i"/></a>
+                     }
+
+                  @if (pages > 1)
+                  { 
+                 <a href="@Session["sURL"]/forum/replies/@forum-@post-@tp-2" ><input type="button" value="next"/></a>
+                  }
+                    <form method="get" action="@Session["sURL"]/forum/redirectpage/@forum-@post-@tp">
+                        <select name="page" style="display:inline;max-height:200px" >
+                            @for (int i = 1; i <= pages; i++)
+                            {
+                                if (i != frmm)
+                                {
+                            <option value="@i">page @i</option>
+                                }
+                            }
+                        </select>
+                        <input type="submit" value="go"/>
+                    </form>
+               
+              </li>
+                 }
+             }
+              @if (totrep > 0)
+              {
+              <li class="list-group-item active">
+                  <h2>Replies</h2>
+              </li>
+              }
+       @foreach (var reply in replies)
+       { 
+              <li class="list-group-item">
+                  <div class="container list-group-item active" >
+    @{
+           var postdby = reply.RBY;
+           var prf = db.QuerySingle("Select UserName from UserProfile where [UserId]='" + postdby + "'");
+           var profEt = db.QuerySingle("select * from profileExt where [Id]='" + postdby + "'");
+      
+        }
+    <div class="col-sm-2 ">
+        <img class="thumbnail" src="~/Content/icons/Entypo_d83d(52)_64.png"/>
+    </div>
+    <div class="col-sm-4">
+        <label><a href="#">@prf.UserName</a></label>
+    </div>
+    
+   
+</div>
+<div class="container list-group-item" >
+    @Html.Raw(reply.post)
+    
+</div>
+<div class="container list-group-item active " >
+    <ul class=" pager">
+    <li  style="float:left" >@reply.time <a href="#">Report</a></li>
+     <li >
+         @{
+            var  ql1 = "select * from Likes where [PID]='" + reply.RID + "'and [forumID]='" + forum + "'and [Ftype]='" + c + "' and [Liker]='"+WebSecurity.CurrentUserId+"'";
+             var liked1 = db.QuerySingle(ql1);
+             if (liked1 == null)
+             {
+         <a href="@Session["sURL"]/forum/like/1-@reply.RID-@forum-@c-@reply.RBY?r=showpost/@frm">Like</a>
+             }
+             else
+             {
+         <a href="@Session["sURL"]/forum/unlike/1-@reply.RID-@forum-@c?r=showpost/@frm">Unlike</a>
+         
+             }
+         }
+         @if( Convert.ToString( reply.RID)==WebSecurity.CurrentUserId.ToString()){
+         <a href="@Session["sURL"]/forum/editreply/@reply.RID?r=/forum/showpost/@frm"> edit</a>
+         }
+         @{
+           var qlc = "select count(*) from Likes where [PID]='"+reply.RID+"'";
+           var tl = db.QueryValue(qlc);
+           var clk =Convert.ToInt32(tl);
+           if (clk > 0) { 
+           <a>@tl @if(clk>1){<text>people</text>}else{<text>person</text>} liked this</a>
+           }}
+             
+</ul>
+</div>
+              </li>
+           if (count >= 9)
+           {
+               break;
+           }
+           count++;
+       }
+              @if (pages > 1)
+              {
+              <li id="paste">
+
+              </li>}
+          </ul>
+      </div>
+    
+</div>
+<hr />
+@if (pages > 1)
+{
+  <style>
+        #copy, #paste {
+        text-align:center
+        }
+    </style>
+
+    <script type="text/javascript">
+        $("#paste").html($("#copy").html());
+    </script>
+
+}
+<form method="post" action="@Session["sURL"]/forum/reply/@forum-@c-@rslt.pId-@rslt.Id">
+    <ul class="list-group">
+        <li class="list-group-item active">
+            <h3>Quick reply</h3>
+        </li>
+        <li class="list-group-item">
+    <textarea id="editor" name="post"></textarea>
+        </li>
+        <li class="list-group-item">
+            <input type="submit" class="btn btn-success"  value="reply"/>
+        </li>
+    </ul>
+</form>
+    
+
+
+
+@section header{
+    @{
+        var fr = db.QuerySingle("select [name] from forums where [Id]='" + forum + "'");
+        }
+    <div class="header">
+         <ul class="track liner">
+      <li>  <a>new Topic</a><a>Recent posts</a><a>latest news</a></li>
+    </ul>
+    <div class="w100 track" style="background:white">
+        <a href="@Session["sURL"]/"><span class="glyphicon glyphicon-home"></span></a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <a href="@Session["sURL"]/forum/">Forums</a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <a href="@Session["sURL"]/forum/show/@forum">@fr.name</a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <a href="@Session["sURL"]/forum/list/@forum-@x">@ftype</a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+    </div>
+        <div class="container list-group-item ">
+        <h2 style="color:black">@rslt.title</h2>
+    </div>
+    
+        </div>
+    <style>
+    .container.list-group-item {
+    width:100%
+    }
+    .thumbnail {
+    width:50px;height:50px
+    }
+    .pstby {
+    box-shadow:0 0 3px gray;width:95%;
+    border-radius:3px
+    }
+    .inline li{
+    display:inline
+    }
+    .w100 {
+        width:100%
+    }
+    .right-f {
+    float:right
+    }
+    .track a:after {
+    content:"   "
+    }
+    .track a:before {
+    content:"   "
+    }
+    .liner {
+    width:100%;
+    background:#313131;
+    color:white;
+    padding:9px;list-style:none
+    }
+    body {
+    padding:5px
+    }
+        .track a {color:#000000
+        }
+        .liner a {
+        color:white
+        }
+    .title {
+    background:white;border-radius:3px;box-shadow:0 0 4px black;
+    padding:3px;width:100%;margin:0 auto;margin-top:-6px;text-align:center
+    }
+    .header {
+        padding-bottom:10px;color:#0094ff
+    }
+</style>
+    }

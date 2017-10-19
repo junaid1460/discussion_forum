@@ -1,0 +1,66 @@
+﻿ <div class="container" id="bdy">
+	   <div class=" row">
+      		<!-- left side column -->
+  			<div class="col-md-3 col-sm-3" id="sidebr">
+              	
+      			<div class="list-group">
+            <a href="#" class="list-group-item active">
+             CSS properties
+            </a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/cssintro'>css introduction</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/font'>css-font</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/background'>background</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/color'>color</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/boxshadow'>box-shadow</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/textshadow'>text-shadow</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/height'>height,width</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/border'>css-border</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/textalign'>text-align</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/outline'>outline</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/opacity'>opacity</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/padding'>padding</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/cursor'>cursor</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/margin'>margin</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/position'>position</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/zindex'>z-index</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/visibility'>visibility</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/float'>float</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/overflow'>overflow</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/textdecoration'>text-decoration</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/fontweight'>font-weight</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/liststyle'>list-style</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/transition'>transition</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/css/animation'>animation</a>
+          </div>
+                
+              </div>
+      		
+      		<div class="col-md-9 col-sm-9" id="content">
+            	<div class="panel" style="box-shadow:0 1px 2px gray" id="cpanel">  
+              	<div class="panel-body">
+               
+               
+@{
+  
+     var p = ViewBag.id;
+     p = Convert.ToString(p);
+     p = p == "System.Object" ? "cssintro" : p;
+     try{
+    @RenderPage(Href("~/resource/css/"+p+".vbhtml"));
+ 
+    }
+    catch(Exception e){
+    <h1>the requested page not found </h1>
+    }
+    
+    }
+
+
+
+                  </div><!--/panel-body-->
+                </div><!--/panel-->
+              	<!--/end right column-->
+      	</div> 
+     
+       </div>
+    </div>

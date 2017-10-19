@@ -1,0 +1,57 @@
+﻿ <div class="container" id="bdy">
+	   <div class=" row">
+      		<!-- left side column -->
+  			<div class="col-md-3 col-sm-3" id="sidebr">
+              	
+      		
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+             HTML
+            </a>
+
+              <a class="list-group-item" href='@Session["sURL"]/tutorials/html/htmlintro'>Introduction</a>
+              <a class="list-group-item" href='@Session["sURL"]/tutorials/html/htmlpre'>pre tag</a>
+              <a class="list-group-item" href='@Session["sURL"]/tutorials/html/htmlbr'>Break Tag</a>
+              <a class="list-group-item" href='@Session["sURL"]/tutorials/html/htmlul'>List Tag</a>
+              <a class="list-group-item" href='@Session["sURL"]/tutorials/html/htmlimg'>Image Tag</a>
+              <a class="list-group-item" href='@Session["sURL"]/tutorials/html/htmltb'>TableTag</a>
+              <a class="list-group-item" href='@Session["sURL"]/tutorials/html/htmlb'>Bold Tag</a>
+              <a class="list-group-item" href='@Session["sURL"]/tutorials/html/htmli'>Italics Tag</a>
+              <a class="list-group-item" href='@Session["sURL"]/tutorials/html/htmlhref'>Hyperlink Tag</a>
+                
+               
+             
+          </div>
+
+    
+                
+              </div>
+      		
+      		<div class="col-md-9 col-sm-9" id="content">
+            	<div class="panel" style="box-shadow:0 1px 2px gray" id="cpanel">  
+              	<div class="panel-body">
+               
+             
+            
+@{
+    
+     var p = ViewBag.id;
+     p = Convert.ToString(p);
+     p = p == "System.Object" ? "htmlintro" : p;
+     try{
+    @RenderPage(Href("~/resource/html/"+p+".cshtml"));
+    
+    }
+    catch(Exception e){
+    <h1>the requested page not found </h1>
+    }
+    
+    }
+      </div><!--/panel-body-->
+                </div><!--/panel-->
+              	<!--/end right column-->
+      	</div> 
+     
+       </div>
+    </div>
+

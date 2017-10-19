@@ -1,0 +1,72 @@
+﻿@{var isValid=true;
+    Layout = "";
+    var fname = "";
+    var lname = "";
+    var bdate = "";
+    if(IsPost){
+         fname = Request.Form["fname"];
+         lname = Request.Form["lname"];
+         bdate = Request.Form["bdate"];
+        
+        if(fname==""||fname==null||lname==""||lname==null||bdate==""||bdate==null)
+        {
+            isValid = false;
+            
+        }
+        if(isValid){
+        var qu = "INSERT INTO profileExt([id],[fname],[lname],[bdate]) values('"+WebSecurity.CurrentUserId+"','"+fname+"','"+lname+"','"+bdate+"')";
+        var qz = "UPDATE profileExt SET fname='" + fname + "',lname='" + lname + "',dob='" + bdate + "' where id='" + WebSecurity.CurrentUserId + "';";
+        var qt = "select * from profileExt where Id='"+WebSecurity.CurrentUserId+"'";
+        var db = Database.Open("defaultconnection");
+        if(db.Query(qt)==null){
+            db.Query(qu);
+        }
+        else{
+            db.Query(qz);
+        }
+        Response.Redirect("~/");
+        }
+        
+    }
+    }
+@Html.Partial("_bts")
+<div >
+<div class="col-md-6" tabindex="-1" role="dialog" aria-hidden="true" style="width:100%;">
+  <div >
+  <div class="cccc" style="margin:0 auto;">
+      @if (!isValid) { 
+       <div class="alert alert-danger">please fill all the fields and try again</div>
+      }
+      <div class="modal-header">
+          <a href="@Session["sURL"]">
+              <label  class="close"  aria-hidden="true">skip</label>
+              </a>
+          <h1 class="text-center">Your details</h1>
+      </div>
+      <div class="modal-body">
+          <form class="form col-md-12 center-block" method="post">
+     
+            <div class="form-group">
+                <label>First name</label>
+              <input name="fname" value="@fname" type="text" class="form-control input-lg" placeholder="First-name">
+            </div>
+              <div class="form-group">
+                  <label>last name</label>
+              <input name="lname" value="@lname" type="text" class="form-control input-lg" placeholder="Last-name">
+            </div>
+            <div class="form-group">
+                <label>Birth-Date</label>
+              <input name="bdate" value="@bdate" type="text" class="form-control input-lg" placeholder="mm/dd/yyyy">
+            </div>
+             <div class="list-group-item">
+                  <input type="submit" value="save" class="form-control" />
+              </div>
+           
+          </form>
+      </div>
+      <div class="modal-footer">
+         	
+      </div>
+  </div>
+  </div>
+</div></div>

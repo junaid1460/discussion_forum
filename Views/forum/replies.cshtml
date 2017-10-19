@@ -1,0 +1,389 @@
+﻿ @{
+     if (!WebSecurity.IsAuthenticated)
+     {
+         Response.Redirect("~/account/login");
+     }
+     }
+<script type="text/javascript" src="~/ckeditor1/ckeditor.js"></script>
+ <script type="text/javascript" src="~/ckeditor1/adapters/jquery.js"></script>
+ <script>
+     $(document).ready(function () {
+         $('#editor').ckeditor();
+     });
+	</script>
+@try
+{
+    Layout = "~/views/shared/_layout-3h.cshtml";
+    var frm = ViewBag.param;
+
+    var frmpsttp = (Convert.ToString(frm) + "").Split('-');
+    int forum = Convert.ToInt32(frmpsttp[0]);
+    int post = Convert.ToInt32(frmpsttp[1]);
+    int tp = Convert.ToInt32(frmpsttp[2]);
+    int from = Convert.ToInt32(frmpsttp[3]);
+    var type = "";
+    switch (tp)
+    {
+        case 1:
+            type = "general";
+            break;
+
+        case 2:
+            type = "QA";
+            break;
+
+        case 3:
+            type = "thirddev";
+            break;
+
+        case 4:
+            type = "origdev";
+            break;
+
+        case 5:
+            type = "projects";
+            break;
+
+        default:
+            Response.Redirect("~/error?" + frm);
+            break;
+    }
+    var db = Database.Open("defaultconnection");
+    var q = "Select * from " + type + " where [postedIn]='" + forum + "' and [pId]='" + post + "'";
+    var rslt = db.QuerySingle(q);
+    
+<div id="replies">
+    @{
+    var qr = "SELECT * FROM replies WHERE [RPOST]='" + rslt.pID + "' and [RPOSTTYPE]='" + tp + "'";
+    var qc = "SELECT COUNT(*) FROM replies WHERE [RPOST]='" + rslt.pID + "' and [RPOSTTYPE]='" + tp + "'";
+    var replies = db.Query(qr);
+    var frmm = from;
+    from = from * 10 - 10;
+    var count = 1;
+
+    int totrep = Convert.ToInt32(db.QueryValue(qc));
+    var pages = (totrep / 10) + 1;
+        }
+     <style>
+              .list-group-item.active {
+              background:#0094ff;color:white;padding-bottom:0;padding-top:0;
+              }
+              .list-group-item.active:hover {
+              background:#0094ff;
+              }
+              .list-group-item.active.foot {
+              color:white;padding-bottom:0;padding-top:0;
+              background:white;
+              }
+              .list-group-item.active.foot:hover {
+              background:#0094ff;
+              }
+              
+             input[type=button] {
+              background:#c8c8c8;font-weight:500;
+              color:black;text-shadow:0 1px 1px white;border:none;
+
+              }
+             input.current {
+              background-color:#313131;
+              color:white;text-shadow:0 1px 1px #c8c8c8
+              }
+          </style>
+      <div>
+          <ul  class="list-group">
+             @if (pages <= 7)
+             {
+                 <li style="list-style:none" id="copy">
+                     @if (frmm== 2)
+                 { 
+                 <a href="@Session["sURL"]/forum/showpost/@forum-@post-@tp" ><input type="button" value="Previous"/></a>
+                 }else{
+                         var s = frmm-1;
+                     <a href="@Session["sURL"]/forum/replies/@forum-@post-@tp-@s" ><input type="button" value="Previous"/></a>
+                 
+                     }
+                  <a href="@Session["sURL"]/forum/showpost/@forum-@post-@tp"><input type="button"  value="1"/></a>
+                       @for (int i = 2; i <= pages; i++)
+                       { 
+               <a  @if (i != frmm)
+                   {<text>href="@Session["sURL"]/forum/replies/@forum-@post-@tp-@i"</text>} ><input type="button" @if (i == frmm)
+                                                                                                                  {<text>class="current"</text>} value="@i"/></a>
+                       }
+
+                 @if (frmm<pages)
+                 { 
+                     var s =frmm+1;
+                 <a href="@Session["sURL"]/forum/replies/@forum-@post-@tp-@s" ><input type="button" value="Next"/></a>
+                 }
+                 
+                  
+              </li>
+             }
+             else
+             {
+              <li style="list-style:none"  id="copy">
+                   @if (frmm== 2)
+                 { 
+                 <a href="@Session["sURL"]/forum/showpost/@forum-@post-@tp" ><input type="button" value="Previous"/></a>
+                 }else{
+                         var s = frmm-1;
+                     <a href="@Session["sURL"]/forum/replies/@forum-@post-@tp-@s" ><input type="button" value="Previous"/></a>
+                 
+                     }
+                  <a href="@Session["sURL"]/forum/showpost/@forum-@post-@tp"><input type="button"  value="1"/></a>
+                       @for (int i = 2; i <= 3; i++)
+                       { 
+               <a  @if (i != frmm)
+                   {<text>href="@Session["sURL"]/forum/replies/@forum-@post-@tp-@i"</text>} ><input type="button" @if (i == frmm)
+                                                                                                                  {<text>class="current"</text>} value="@i"/></a>
+                       }
+                  
+                  @if (frmm > 3 && frmm < pages - 3) {
+                      if (frmm != 4) { 
+                      <span class="glyphicon glyphicon-arrow-right"></span>
+                      }
+                  <a  ><input type="button" class="current" value="@frmm"/></a>
+                  if (frmm != pages-4) { 
+                      <span class="glyphicon glyphicon-arrow-right"></span>
+                  }
+                  }else{
+                  <span class="glyphicon glyphicon-arrow-right"></span>
+                  }
+                     @for (int i = pages - 3; i <= pages; i++)
+                     { 
+               <a  @if (i != frmm)
+                   {<text>href="@Session["sURL"]/forum/replies/@forum-@post-@tp-@i"</text>} ><input type="button" @if (i == frmm)
+                                                                                                                  {<text>class="current"</text>} value="@i"/></a>
+                     }
+                  
+                 @if (frmm<pages)
+                 { 
+                     var s =frmm+1;
+                 <a href="@Session["sURL"]/forum/replies/@forum-@post-@tp-@s" ><input type="button" value="Next"/></a>
+                 }
+                 
+                  
+                    <form method="get" action="@Session["sURL"]/forum/redirectpage/@forum-@post-@tp">
+                        <select name="page" style="display:inline;max-height:200px" >
+                            @for (int i = 1; i <= pages; i++)
+                            { if(i!=frmm){
+                            <option value="@i">page @i</option>
+                            }
+                            }
+                        </select>
+                        <input type="submit" value="go"/>
+                    </form>
+               
+              </li>
+             }
+
+          
+              <li class="list-group-item active">
+                  <h2>Replies</h2>
+              </li>
+       @foreach (var reply in replies)
+       {
+
+           if (count >= from)
+           {
+              <li class="list-group-item">
+                  <div class="container list-group-item active" >
+    @{
+               var postdby = reply.RBY;
+               var prf = db.QuerySingle("Select UserName from UserProfile where UserId='" + reply.RBY + "'");
+               var profEt = db.QuerySingle("select * from profileExt where [Id]='" + reply.RBY + "'");
+      
+        }
+    <div class="col-sm-2 ">
+        <img class="thumbnail" src="~/Content/icons/Entypo_d83d(52)_64.png"/>
+    </div>
+    <div class="col-sm-4">
+        <label><a href="#">@prf.UserName</a></label>
+    </div>
+    
+   
+</div>
+<div class="container list-group-item" >
+    @Html.Raw(reply.post)
+    
+</div>
+<div class="container list-group-item active" >
+    <ul class=" pager">
+    <li  style="float:left" >@reply.time <a href="#">Report</a></li>
+     <li >
+         
+         @{
+            var  ql1 = "select * from Likes where [PID]='" + reply.RID + "'and [forumID]='" + forum + "'and [Ftype]='" + tp + "'";
+             var liked1 = db.QuerySingle(ql1);
+             if (liked1 == null)
+             {
+         <a href="@Session["sURL"]/forum/like/1-@reply.RID-@forum-@tp-@reply.RBY?r=replies/@frm">Like</a>
+             }
+             else
+             {
+         <a href="@Session["sURL"]/forum/unlike/1-@reply.RID-@forum-@tp?r=replies/@frm">Unlike</a>
+         
+             }
+         }
+         @if( Convert.ToString( reply.RBY)==WebSecurity.CurrentUserId.ToString()){
+         <a href="@Session["sURL"]/forum/editreply/@reply.RID?r=/forum/replies/@frm"> edit</a>
+         }
+          @{
+           var qlc = "select count(*) from Likes where [PID]='"+reply.RID+"'";
+           var tl = db.QueryValue(qlc);
+           var clk =Convert.ToInt32(tl);
+           if (clk > 0) { 
+           <a>@tl @if(clk>1){
+                      <span>people</span>
+           }else{
+                      <span>person</span>
+           } liked this</a>
+           }}
+     </li>
+</ul>
+</div>
+              </li>
+           }
+           if (count >= from + 10)
+           {
+               break;
+           }
+           count++;
+       }
+              <li id="paste">
+
+              </li>
+          </ul>
+      </div>
+    
+</div>
+<hr />
+    <style>
+        #copy, #paste {
+        text-align:center
+        }
+    </style>
+
+    <script type="text/javascript">
+        $("#paste").html($("#copy").html());
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form method="post" action="@Session["sURL"]/forum/reply/@forum-@tp-@rslt.pId-@rslt.Id">
+    <ul class="list-group">
+        <li class="list-group-item active">
+            <h3>Quick reply</h3>
+        </li>
+        <li class="list-group-item">
+    <textarea id="editor" name="post"></textarea>
+        </li>
+        <li class="list-group-item">
+            <input type="submit" class="btn btn-success"  value="reply"/>
+        </li>
+    </ul>
+</form>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section header{
+    @{
+        var fr = db.QuerySingle("select [name] from forums where [Id]='" + forum + "'");
+        }
+    <div class="header">
+    <div class="w100 track" style="background:white">
+        <a href="@Session["sURL"]/"><span class="glyphicon glyphicon-home"></span></a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <a href="@Session["sURL"]/forum/">Forums</a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <a href="@Session["sURL"]/forum/show/@forum">@fr.name</a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <a href="@Session["sURL"]/forum/list/@forum?type=@tp">@type</a>
+    </div>
+    <ul class="track liner">
+      <li>  <a>new Topic</a><a>Recent posts</a><a>latest news</a></li>
+    </ul>
+    
+        </div>
+    <style>
+    .container.list-group-item {
+    width:100%
+    }
+    .thumbnail {
+    width:50px;height:50px
+    }
+    .pstby {
+    box-shadow:0 0 3px gray;width:95%;
+    border-radius:3px
+    }
+    .inline li{
+    display:inline
+    }
+    .w100 {
+        width:100%
+    }
+    .right-f {
+    float:right
+    }
+    .track a:after {
+    content:"   "
+    }
+    .track a:before {
+    content:"   "
+    }
+    .liner {
+    width:100%;
+    background:#313131;
+    color:white;
+    padding:9px;list-style:none
+    }
+    body {
+    padding:5px
+    }
+        .liner a,.track a {color:#1fc1ff
+        }
+    .title {
+    background:white;border-radius:3px;box-shadow:0 0 4px black;
+    padding:3px;width:100%;margin:0 auto;margin-top:-6px;text-align:center
+    }
+    .header {
+        padding-bottom:10px;color:#0094ff
+    }
+</style>
+    }
+}
+catch (Exception e)
+{
+    Crook.tools.log("relies", e.Message, "overall", "redirecToError");
+    Response.Redirect("~/error");
+}

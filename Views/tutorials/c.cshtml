@@ -1,0 +1,46 @@
+﻿<div class="container" id="bdy">
+	   <div class=" row">
+           <!--section content ->
+      		<!-- left side column -->
+  			<div class="col-md-3 col-sm-3" id="sidebr">
+              <div class="list-group">
+            <a href="#" class="list-group-item active">
+             C Programming
+            </a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/c/cintro'>Introduction</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/c/cio'>Input and Output statements</a>
+                <a class="list-group-item" href='@Session["sURL"]/tutorials/c/ccnd'>Condition and Loop statements</a>
+               
+             
+          </div>
+
+              </div>
+      		
+      		<div class="col-md-9 col-sm-9" id="content">
+            	<div class="panel" style="box-shadow:0 1px 2px gray" id="cpanel">  
+              	<div class="panel-body">
+               
+               
+                
+
+@{
+     var p = ViewBag.id;
+     p = Convert.ToString(p);
+     p = p == "System.Object" ? "cintro" : p;
+     try{
+    @RenderPage(Href("~/resource/c/"+p+".cshtml"));
+ 
+    }
+    catch(Exception e){
+    <h1>the requested page not found :@e.Message</h1>
+    }
+    
+    }
+  </div><!--/panel-body-->
+                </div><!--/panel-->
+              	<!--/end right column-->
+      	</div> 
+     
+       </div>
+    </div>
+

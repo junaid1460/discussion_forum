@@ -1,0 +1,84 @@
+﻿@{
+    //:GET here we initialise <form>
+   var db = Database.Open("defaultconnection");
+   var type = "";
+   switch ((int)ViewBag.type)
+   {
+       case 1:
+           type = "general";
+           break;
+
+       case 2:
+           type = "QA";
+           break;
+
+       case 3:
+           type = "thirddev";
+           break;
+
+       case 4:
+           type = "origdev";
+           break;
+
+       case 5:
+           type = "projects";
+           break;
+
+       default:
+           Response.Redirect("~/error?" );
+           break;
+   }
+   var q = "select * from "+type+" where [pId]='" + ViewBag.pid + "'";
+   var rslt = db.QuerySingle(q);
+   if(rslt.Id != WebSecurity.CurrentUserId.ToString()){
+       Response.Redirect("~/error");
+   }
+   ViewBag.post = rslt.post;
+   ViewBag.title = rslt.title;
+   if(IsPost){
+       var post = Request.Unvalidated.Form["post"];
+       var title = Request.Unvalidated.Form["title"]; 
+       if (post.Length <= 6)
+       {
+           ViewBag.postError = "too less charecters";
+           
+       }
+       if (title.Length <= 6)
+       {
+           ViewBag.titleError = "too less charecters";
+
+       }
+       else{
+       q = "UPDATE "+type+" SET [post]='" +post + "',[title]='"+title+"' WHERE [pId]='" + ViewBag.pid + "'";
+       db.Query(q);
+       var r = Request["r"];
+           Response.Redirect(r==null?"~/":r);
+       }
+   }
+   }
+        <script type="text/javascript" src="~/ckeditor1/ckeditor.js"></script>
+        <script type="text/javascript" src="~/ckeditor1/adapters/jquery.js"></script>
+ 
+<form method="post">
+    
+	<script>
+	    $(document).ready(function () {
+	        $('#edit').ckeditor();
+	    });
+	</script>
+    @if (ViewBag.titleError!=null)
+    { 
+    <div class="alert alert-warning">@ViewBag.titleError</div>
+    }
+    <input type="text" placeholder="Title..." required="required" class="form-control" name="title" value="@ViewBag.title"/>
+    <hr />
+    @if (ViewBag.postError!=null)
+    { 
+    <div class="alert alert-warning">@ViewBag.postError</div>
+    }
+		<textarea cols="40" id="edit" name="post" rows="20" >
+            @ViewBag.post
+		</textarea>
+    <hr />
+    <input type="submit" class="form-control" value="save"/>
+    </form>

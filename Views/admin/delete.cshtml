@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/views/shared/_layout-3h.cshtml";
+}@{
+    var id = Request["id"];
+    if (IsPost)
+    {
+        Database db = Database.Open("defaultconnection");
+        db.Query("update forums set isdisabled='true' where id=" + id);
+        Response.Redirect("~/admin/nforum");
+    }
+    else { 
+    <div class="jumbotron">
+        <h1 class="button" style="color:black"> are you sure</h1>
+        <form method="post">
+            <input type="hidden" name="id" value="@id" />
+            <input class="btn btn-lg btn-success" value="yes delete" type="submit">
+        </form>
+        <a href="~/admin/nforum" class="btn btn-lg btn-warning">no goback</a>
+    </div>
+    }
+ }
+

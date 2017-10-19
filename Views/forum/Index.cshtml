@@ -1,0 +1,107 @@
+﻿@{
+    
+    var type = new string[5];
+            type[0] = "general";
+            type[1] = "QA";
+            type[2] = "thirddev";
+            type[3] = "origdev";
+            type[4] = "projects";
+          
+         
+    }
+<div class="container">
+    <div class="list-group frm">
+        <div  class="list-group-item active">
+              <h4 class="list-group-item-heading">Forums</h4>
+              
+            </div>
+       @{
+           Database db = Database.Open("defaultconnection");
+                var r = db.Query("select * from forums where isdisabled='false'");
+                foreach(var row in r){
+                    var totalPost = 0;
+                    foreach(var sub in type){
+                        var qt = "SELECT COUNT(*) FROM "+sub+" where [postedIn]='"+row.Id+"'";
+                        totalPost += Convert.ToInt32(db.QueryValue(qt));
+                    }
+                    var totalReplies = 0;
+                    totalReplies = Convert.ToInt32(db.QueryValue("SELECT COUNT(*) FROM replies where [Forum]='"+row.Id+"'"));
+           <div  class="list-group-item">
+               <span class="glyphicon glyphicon-chevron-right"></span>
+              <a href="@Session["sURL"]/forum/show/@row.Id" class="list-group-item-heading">@row.name</a>
+              <p class="list-group-item-text">@row.descriptions</p>
+               <div class="footer list">
+                   <span class="left-f">Total Threads :@totalPost | </span> 
+                   <span style="padding-left:5px"> Total replies :@totalReplies</span>
+               </div>
+            </div>
+                }
+       }
+   </div>
+   </div>
+@section header{
+   
+    <div class="header">
+            <ul class="track liner">
+      <li>  <a>new Topic</a><a>Recent posts</a><a>latest news</a></li>
+    </ul>
+    <div class="w100 track" style="background:white">
+        <a href="@Session["sURL"]/"><span class="glyphicon glyphicon-home"></span></a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <a >Forums</a>
+       
+    </div>
+
+    
+        </div>
+   <style>
+    .container.list-group-item {
+    width:100%
+    }
+    .thumbnail {
+    width:50px;height:50px
+    }
+    .pstby {
+    box-shadow:0 0 3px gray;width:95%;
+    border-radius:3px
+    }
+    .inline li{
+    display:inline
+    }
+    .w100 {
+        width:100%
+    }
+    .right-f {
+    float:right
+    }
+    .track a:after {
+    content:"   "
+    }
+    .track a:before {
+    content:"   "
+    }
+    .liner {
+    width:100%;
+    background:#313131;
+    color:white;
+    padding:9px;list-style:none
+    }
+    body {
+    padding:5px
+    }
+        .track a {color:#000000
+        }
+        .liner a {
+        color:white
+        }
+    .title {
+    background:white;border-radius:3px;box-shadow:0 0 4px black;
+    padding:3px;width:100%;margin:0 auto;margin-top:-6px;text-align:center
+    }
+    .header {
+        padding-bottom:10px;color:#0094ff
+    }
+    
+       
+</style>
+    }

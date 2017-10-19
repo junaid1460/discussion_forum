@@ -1,0 +1,102 @@
+﻿@{
+
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title </title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+        <script type="text/javascript" src="~/Content/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="~/Content/css/bootstrap-theme.min.css" />
+        <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+        <script type="text/javascript" src="~/Scripts/site.js"></script>
+        <link rel="stylesheet" href="~/Content/Site.css" />
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+
+    <body>
+        @RenderSection("hidden",false)
+        
+                <section class="bback">
+                   <div class="body-back">
+                        <img src="~/Content/images/blr.jpg"  style="width:100%"/>
+                   </div>
+            </section>
+        
+        @Html.Partial("_navPartial")
+        
+        <div id="body" class="obody container">
+            <div class="" style="margin:0;padding:10px">
+                             <div class="renderer-left col-sm-3" >
+                                 @RenderSection("content", required: false)
+                             </div>
+                             <div class=" col-sm-9  blog-main renderer " style="">
+                                 @RenderSection("browsersupport", required: false)
+                                 @RenderBody()
+                             </div>
+                   </div>
+        </div>
+        <footer class="footer footer-default" id="foot">
+             <div class="container right">
+                 
+                 <div class="renderer-left col-sm-3" >
+                 <ul data-type="list">
+                     <li data-active="true">tutorials-web based</li>
+                     <li><a href="#">HTML</a></li>
+                     <li><a href="#">HTML5</a></li>
+                     <li><a href="#">CSS</a></li>
+                     <li><a href="#">XML</a></li>
+                     <li><a href="#">XHTML</a></li>
+                     <li><a href="#">XSLT</a></li>
+                     <li><a href="#">more..</a></li>
+                 </ul>            
+                 </div>
+                 <div class="renderer-left col-sm-3" >
+                 <ul data-type="list">
+                     <li data-active="true">tutorials-Server scripting</li>
+                     <li><a href="#">PHP</a></li>
+                     <li><a href="#">ASPX</a></li>
+                     <li><a href="#">RAZOR</a></li>
+                     <li><a href="#">JSP</a></li>
+                     <li><a href="#">CGI</a></li>
+                     <li><a href="#">RoR</a></li>
+                     <li><a href="#">more</a>li>
+                 </ul>           
+                 </div>
+                 <div class="renderer-left col-sm-3" >
+                 <ul data-type="list">
+                     <li data-active="true">tutorials-programming</li>
+                     <li><a href="#">C program</a></li>
+                     <li><a href="#">C++ program</a></li>
+                     <li><a href="#">java</a></li>
+                     <li><a href="#">C#</a></li>
+                     <li><a href="#">VB</a></li>
+                     <li><a href="#">PERL</a></li>
+                     <li><a href="@Request.Url.Host/forum">more..</a></li>
+                 </ul>           
+                 </div>
+                 <div class="renderer-left col-sm-3" >
+                 <img src="~/Content/icons/Entypo_f30e(99)_48.png"  />
+                 <img src="~/Content/icons/Entypo_f309(107)_48.png"  />
+                 <img src="~/Content/icons/Entypo_f30f(100)_48.png"  />           
+                 </div>
+                 
+             </div>
+        </footer>
+        <select ></select>
+        @RenderSection("scripts", required: false)
+        <script type="text/javascript">
+            s = $(".pageselect");
+            for (i = parseInt(s.data("from")) ; i <= parseInt(s.data("till")) ; i++) {
+                s.append("<option>"+i+"</option>");
+            }
+            s.on("select", function () {
+
+            });
+                      </script>
+    </body>
+</html>
+

@@ -1,0 +1,100 @@
+﻿@{
+    var from = 0;
+    var to = from + 20;
+    var db = Database.Open("defaultconnection");
+    var qnew = "SELECT * FROM Likes where [WHO]='"+WebSecurity.CurrentUserId+"'";
+    var result = db.Query(qnew);
+    var quser = "";
+    var qq = "select * from UserProfile where [UserId]='";
+    
+ }
+<h1><span>Alerts</span></h1>
+<div class="container">
+@if(result!=null){
+ foreach (var alert in result) {
+     int x = Convert.ToInt32(alert.LKType);
+     var type = "";
+     var ftype = "";
+     switch (x)
+     {
+         case 1:
+             type = "general";
+             ftype = "General";
+             break;
+
+         case 2:
+             type = "QA";
+             ftype = "Q&A, Help & Troubleshooting";
+             break;
+
+         case 3:
+             type = "thirddev";
+             ftype = "3rd party develeopment";
+             break;
+
+         case 4:
+             type = "origdev";
+             ftype = "Oringinal Development";
+             break;
+
+         case 5:
+             type = "projects";
+             ftype = "Projects";
+             break;
+
+         default:
+             type = "list-all";
+             Response.Redirect(@"~\error");
+             break;
+     }
+     
+<div class="col-sm-6 col-lg-6 col-md-6  @if (alert.shown == "not"){<text>new</text>}else{<text>old</text>}">
+    <div class="col-sm-2">
+        <div  class="thumbnail avatar" style="width:55px;height:55px;padding:10px"></div>
+    </div>
+    <div class="">
+<div class="thumbnail">
+     
+    <p>
+        <a href="#"><b>@db.QuerySingle("select * from UserProfile where [UserId]='"+alert.Liker+"'").UserName</b> </a><b><i>liked</i></b> your post in  
+      <b> @db.QuerySingle("select * from Forums where [Id]='"+alert.forumID+"'").name</b> @ftype 
+       
+    </p>
+    
+    <a class="glyphicon glyphicon-chevron-right right-f goto" href="@alert.post/"></a>
+</div>
+        </div>
+    </div>
+     
+     if (from == to) {
+         break;
+     }
+     from++;
+ }
+ }
+ 
+</div>
+<style>
+    .new,.old {
+        border:1px green solid;
+    border-left:5px green solid;
+    background:rgba(23, 155, 33,0.4);
+    padding:5px;margin:2px;width:100%
+    }
+    .old {
+        border-color:gray;
+        background:rgb(222,222,222)
+    }
+    .avatar {
+    background:rgba(23, 155, 33,0.4);
+    z-index:100;box-shadow: 0 0 2px black
+    }
+    .old .avatar {
+    background:rgb(222,222,222);
+    }
+</style>
+@{
+    var qa = "UPDATE alerts SET [shown]='shown' where [id]='"+WebSecurity.CurrentUserId+"'";
+    db.Query(qa);
+    
+    }

@@ -1,0 +1,197 @@
+﻿@{
+  
+    var prm = ViewBag.post;
+    var frmpsttp = (Convert.ToString(prm) + "").Split('-');
+    var forum = frmpsttp[0];
+    var post = frmpsttp[1];
+    int sub = Convert.ToInt32(post);
+    var type = "";
+    var ftype = "Q&A, Help & Troubleshooting";
+    switch ( Convert.ToInt32(sub)){
+        case 1:
+                type = "general";
+                ftype = "General";
+                break;
+            
+        case 2:
+                type = "QA";
+                ftype = "Q&A, Help & Troubleshooting";
+                break;
+            
+        case 3:
+                type = "thirddev";
+            ftype="3rd party develeopment";
+                break;
+            
+        case 4:
+                type = "origdev";
+               ftype="Oringinal Development";
+                break;
+            
+        case 5:
+                type = "projects";
+                ftype="Projects";
+                break;
+            
+        default:
+            type = "list-all";
+            Response.Redirect(@"~\error");
+            break;
+    }
+    }
+<div class="list-group">
+    <div class="list-group-item">
+        <a class="btns-out" href="@Session["sURL"]/forum/addpost/@prm-@sub"><input type="button" class="btns-in" value="+"/> Post new thread</a>
+    </div>
+    <div class="">
+        <div class="container">
+            <div class="col-xs-3 col-md-1 gra col-sm-1 ">
+                <img class="thumnail" style="width:50px;height:50px" src="~/Content/icons/Entypo_d83d(52)_64.png"/>
+            </div>
+            <div class="col-xs-7 col-md-9 gra col-sm-9">
+                <h5><a>Forum rules and policies</a></h5>
+            </div>
+            <div class="col-xs-1 col-md-1 gray col-sm-1">
+                pin
+            </div>
+        </div>
+    </div>
+    @{
+        var db = Database.Open("defaultconnection");
+        var q = "SELECT * FROM " + type + " WHERE [postedIn]='"+forum+"'" ;
+        var threads = db.Query(q);
+        }
+    @foreach(var thread in threads){
+    <div class=" container l-i" style="background:white">
+        <div>
+            <i class="glyphicon glyphicon-pushpin right-f pin" ></i>
+        </div>
+        <div class="container">
+            <div class="col-xs-2 col-md-2 col-sm-2">
+                <img class="thumnail" style="width:60%;height:60%;min-width:33px" src="#"/>
+
+            </div>
+            <div class="col-xs-8 col-md-8  col-sm-8">
+             <h5 style="width:80%"><a style="word-break:break-all" href="@Session["sURL"]/forum/showpost/@forum-@thread.pId-@sub">@thread.title</a></h5>
+              </div>
+        </div>
+         <div class="footer list col-md-9 col-xl-9">
+                Replies : @db.QueryValue("select count(*) from replies where [RPOSTTYPE]='"+sub+"' and [RPOST]='"+thread.pId+"'")
+                       </div>
+    </div>
+    }
+    <li class="list-group-item">
+        <a class="btns-out" href="@Session["sURL"]/forum/addpost/@prm-@sub"><input type="button" class="btns-in" value="+"/> Post new thread</a>
+     </li>
+</div>
+<style>
+    .gray {
+    
+    }
+    a {
+    color:#122bf8;text-transform:fullwidth
+    }
+    a:hover {
+    text-decoration:underline
+    }
+    .btns-out {
+        background: #0094ff;
+        display: table-cell;
+        padding-right: 5px;
+        color:white;color:white;
+        font-size:16pt;text-decoration:none
+    }
+        .btns-out:hover {
+        color:white;
+        background:#1fc1ff;text-decoration:none
+        }
+    .btns-out .btns-in {
+        border:none;
+        background:#2e2e2e;
+        padding:5px;color:white
+    }
+    .right-f {
+    float:right
+    }
+    .container {
+    padding:0
+    }
+    .list-group li{
+    padding:2px
+    }
+    .list-group li:first-child{
+    border-top:none
+    }
+    .list-group li:last-child{
+    border-bottom:none
+    }
+</style>
+@section header{
+    @{
+      var fr=  db.QuerySingle("select [name] from forums where [Id]='"+forum+"'");
+        }
+    <div class="header">
+            <ul class="track liner">
+      <li>  <a>new Topic</a><a>Recent posts</a><a>latest news</a></li>
+    </ul>
+    <div class="w100 track" style="background:white">
+        <a href="@Session["sURL"]/"><span class="glyphicon glyphicon-home"></span></a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <a href="@Session["sURL"]/forum/">Forums</a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <a href="@Session["sURL"]/forum/show/@forum">@fr.name</a>
+        <span class="glyphicon glyphicon-arrow-right"></span>
+        <a >@ftype</a>
+    </div>
+
+    
+        </div>
+   <style>
+    .container.list-group-item {
+    width:100%
+    }
+    .thumbnail {
+    width:50px;height:50px
+    }
+    .pstby {
+    box-shadow:0 0 3px gray;width:95%;
+    border-radius:3px
+    }
+    .inline li{
+    display:inline
+    }
+    .w100 {
+        width:100%
+    }
+    .right-f {
+    float:right
+    }
+    .track a:after {
+    content:"   "
+    }
+    .track a:before {
+    content:"   "
+    }
+    .liner {
+    width:100%;
+    background:#313131;
+    color:white;
+    padding:9px;list-style:none
+    }
+    body {
+    padding:5px
+    }
+        .track a {color:#000000
+        }
+        .liner a {
+        color:white
+        }
+    .title {
+    background:white;border-radius:3px;box-shadow:0 0 4px black;
+    padding:3px;width:100%;margin:0 auto;margin-top:-6px;text-align:center
+    }
+    .header {
+        padding-bottom:10px;color:#0094ff
+    }
+</style>
+    }

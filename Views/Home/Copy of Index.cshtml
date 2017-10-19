@@ -1,0 +1,228 @@
+﻿@{
+    Layout = "~/views/shared/_layout-3H.cshtml";
+}
+<style>
+    .sl-mj {
+        position:fixed;z-index:100000;width:100%
+    }
+    .slider-nav {
+    margin:0 auto;
+    text-align:center;background:linear-gradient(to left,rgba(0,0,0,0)rgba(0,0,0,1)rgba(0,0,0,0));padding:7px;
+    }
+        .slider-nav .snav {
+            width:20px;height:20px;border-radius:10%;background:white;
+            display:inline-block;cursor:pointer;text-decoration:none;margin-left:6px;
+            border:3px solid;border-color:rgba(0, 0, 0,0.1);line-height:12px;transition:all 0.3s ease-in-out;
+            font-weight:bold;opacity:0.5
+        }
+            .slider-nav .snav:hover {
+                opacity:1
+            }
+            .slider-nav .snav.active {
+             background:black;color:white;
+             
+            }
+</style>
+
+<div class="slides">
+    <div class="sl-mj">
+    <div class="slider-nav">
+    </div>
+</div>
+    <div class="slide right-t" id="ff" style="background:rgb(255, 106, 0)">
+        <img src="~/Content/icons/home/Entypo_266b(7)_128.png" class="right-f simg"/>
+        <div class="jumbotron nbg right-t animate">
+            <h1 class="wcl">Listen to music anywhere</h1>
+        </div>
+    </div>
+    <div class="slide" style="background:rgb(55, 106, 0)">
+        <img src="~/Content/icons/home/Entypo_2709(6)_128.png" class="left-f simg"/>
+        <div class="jumbotron nbg animate">
+            <h1 class="wcl">Send highly graphical message to your friends</h1>
+        </div>
+    </div>
+    <div class="slide" style="background:rgb(255, 16, 0)">
+        <img src="~/Content/icons/home/Entypo_e700(5)_128.png" class="right-f simg"/>
+        <div class="jumbotron nbg right-t animate">
+            <h1 class="wcl">Make thousands of friends allover the world</h1>
+        </div>
+    </div>
+    <div class="slide" style="background:rgb(255, 106, 60)">
+        <img src="~/Content/icons/home/Entypo_e722(4)_128.png" class="left-f simg"/>
+        <div class="jumbotron nbg  animate">
+            <h1 class="wcl">Your privacy is our responsibility</h1>
+        </div>
+    </div>
+    <div class="slide" style="background:rgb(255, 16, 30)">
+        <img src="~/Content/icons/home/FontAwesome_f075(3)_128.png" class="right-f simg"/>
+        <div class="jumbotron nbg right-t animate">
+            <h1 class="wcl">Chat with your specials with no worry</h1>
+        </div>
+    </div>
+    <div class="slide" style="background:rgb(255, 156, 30)">
+        <img src="~/Content/icons/home/FontAwesome_f0c0(2)_128.png" class="left-f simg"/>
+        <div class="jumbotron nbg animate">
+            <h1 class="wcl">Make your DEVELOPMENT group</h1>
+        </div>
+    </div>
+    <div class="slide" style="background:rgb(255, 16, 50)">
+        <img src="~/Content/icons/home/FontAwesome_f0e6(1)_128.png" class="right-f simg"/>
+        <div class="jumbotron nbg right-t animate">
+            <h1 class="wcl">We also provide you conference Chat</h1>
+        </div>
+    </div>
+    <div class="slide" style="background:rgb(205, 116, 30)">
+        <img src="~/Content/icons/home/FontAwesome_f13b(0)_128.png" class="left-f simg"/>
+        <div class="jumbotron nbg left-t animate">
+            <h1 class="wcl">Everything HTML5</h1>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+    overflow:hidden
+    }
+</style>
+<script type="text/javascript">
+    $.fn.vSlider = function (inSlide, insertBefore, insertAfter, slideAnim, slideReset) {
+        function navBlink(i) {
+            $(".slider-nav .snav.active").removeClass("active");
+            $(".slider-nav .snav[data-nav='" + i + "']").addClass("active");
+        }
+        function xxx() {
+            isEdge = false;
+            if (!isAnimating) {
+                if (c) {
+                    isEdge = i == sl ? true : false;
+                    if (!(i >= sl)) i = i + 1;
+                }
+                else {
+                    isEdge = i == 0 ? true : false;
+                    if (!(i <= 0)) i = i - 1;
+                }
+                if (!isEdge) {
+                    navBlink(i)
+                    $(slides[i]).css({ 'box-shadow': '0 0px 23px black', 'z-index': '100' });
+                    isAnimating = true;
+                    $(prev).animate({ 'opacity': '0.5' }, 300);
+                    $("html,body").animate({ scrollTop: $(slides[i]).offset().top }, 1000, function () {
+                        $(slides[i]).css({ 'box-shadow': 'none', 'z-index': 'auto' }); isAnimating = false;
+                        $(prev).css({ 'opacity': '1' });
+                        prev = slides[i];
+                        $(prev).find(".animate h1").animate(animation).removeClass("wcl");
+                    });
+                    crt = i%xz;
+                }
+            }
+        }
+        isAnimating = false;
+        function cnav(i) {
+            if (!isAnimating&&crt!=i) {
+                navBlink(i);
+                $(slides[i]).css({ 'box-shadow': '0 0px 23px black', 'z-index': '100' });
+                isAnimating = true;
+                $("html,body").animate({ scrollTop: $(slides[i]).offset().top }, 1000, function () {
+                    $(slides[i]).css({ 'box-shadow': 'none', 'z-index': 'auto' }); isAnimating = false;
+                    prev = slides[i];
+                    $(prev).find(".animate h1").animate(animation).removeClass("wcl");
+                });
+                crt = i;
+            }
+            
+            clearInterval(zint)
+            zint = setInterval(zz, 1000);
+        }
+       
+        snc = xxx;
+        snv = "<a  class='snav'></a>";
+        vv = $(".slider-nav");
+            animation = { 'opaicty': '1' };
+            animInit = { 'opaicty': '0' };
+            i = 1;
+            slides = Array();
+           // if ((typeof insertBefore).toLowerCase() == "object" && insertBefore != null)
+           // slides.push($(insertBefore).get(0));
+            slide =$(this).find(".slide");
+            slide.find(".animate h1.wcl").css(animInit);
+            slide.each(function () {
+                
+                $(this).css({ 'z-index': i }); i++;
+                slides.push(this);
+            });
+            for (j = 1; j <= slides.length; j++)
+            {
+                snav = $(snv);
+                snav.attr("data-nav", j-1);
+                snav.text(j)
+                snav.click(function () {
+                    
+                    i = parseInt($(this).attr("data-nav"));
+                    cnav(i);
+                })
+                vv.append(snav);
+            }
+            if ((typeof insertAfter).toLowerCase() == "object" && insertAfter!=null )
+            slides.push($(insertAfter).get(0));
+            var t, c = false;
+            function cz(y) {
+                if (y > 0) {
+                    clearTimeout(t);
+                    t = setTimeout(xxx, 300);
+                    c = true;
+                }
+                else {
+                    clearTimeout(t);
+                    t = setTimeout(xxx, 300);
+                    c = false;
+                }
+            }
+            $(".slides,footer").bind("mousewheel", function (e) {
+                y = e.originalEvent.wheelDelta * -1;
+                cz(y);
+            }).bind("DOMMouseScroll", function (e) {
+                y = e.originalEvent.detail;
+                cz(y)
+            });
+            i = 0;
+            sl = slides.length - 1;
+            var prev = slides[0];
+            navBlink(0);
+            $("html,body").animate({ scrollTop: $(slides[0]).offset().top });
+            $(slides[0]).find(".animate h1").animate(animation).removeClass("wcl");
+            $(".slide").css({ 'height': $(window).height() + "px" });
+            $(window).resize(function () {
+                $(".slide").css({ 'height': $(this).height() + "px" });
+            })
+            this.onAfterSlide = function (fn) {
+            }
+            $(".slider-nav .snav").click(function () {
+                if (!isAnimating) {
+                    $(".slider-nav .snav.active").removeClass("active");
+                    $(this).addClass("active");
+                }
+            });
+            xz = slides.length-1;
+            crt = 0;
+            function zz() {
+                if (!isAnimating) {
+                    navBlink(crt);
+                    $(slides[crt]).css({ 'box-shadow': '0 0px 23px black', 'z-index': '100' });
+                    isAnimating = true;
+                    $("html,body").animate({ scrollTop: $(slides[crt]).offset().top }, 1000, function () {
+                        $(slides[crt]).css({ 'box-shadow': 'none', 'z-index': 'auto' }); isAnimating = false;
+                        prev = slides[crt];
+                    });
+                    crt = (crt + 1) % xz;
+                    clearInterval(zint)
+                    zint = setInterval(zz, 1000);
+                }
+            }
+            return this;
+            
+    }
+    $(function () {
+        $(".slides").vSlider(".slide",null,$("footer")).find(".sl-mj").css({'top':$("nav").height()});
+    });
+    
+
+</script>
