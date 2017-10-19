@@ -1,0 +1,81 @@
+﻿<h1>
+    <span  class="label label-success">Inheritance</span>
+</h1><script type="text/javascript">
+    $(function () {
+        $(".list-group.auto li").addClass("list-group-item");
+    });
+</script>
+<div class="well">
+    Inheritance can be defined as deriving a class from existing class.<br />
+    Derived class is called sub class.<br />
+    Base class is called as super class.<br />
+    Let us see the types of inheritance in Java.<br />
+    </div>
+    <ul class="list-group auto">
+        <li>Sigle inheritance</li>
+        <li>Multilevel inheritance</li>
+        <li>Hiararchical inheritance</li>
+        <li>Hybrid inheritance</li>
+    </ul>
+   <h3> <span class="label label-warning">
+        Single inheritance<br /></span></h3><div class="well">
+        This is the mechanism of deriving a single class from single base class.<br />
+        Example : <br /></div>
+        <pre class="prev">
+            class A            //super class
+            {
+            //class body
+            }
+            class B extends A  //sub class
+            {
+            //class body
+            }
+        </pre>
+   <h3> <span class="label label-warning">
+        Multilevel inheritance<br /></span></h3><div class="well">
+        This is the mechanism of deriving a class from another sub class.<br />
+        Example : <br /></div>
+        <pre class="prev">
+            class A            //super class
+            {
+            //class body
+            }
+            class B extends A  //sub class
+            {
+            //class body
+            }
+            class c extends B  //sub class
+            {
+            //class body
+            }
+        </pre>
+    
+   <h3><span class="label label-warning">
+        Hiararchical inheritance<br /></span></h3><div class="well">
+        This is the mechanism of deriving a multiple classes from single base class.<br />
+        Example : <br /></div>
+        <pre class="prev">
+            class A            //super class
+            {
+            //class body
+            }
+            class B extends A  //sub class
+            {
+            //class body
+            }
+            class C extends A   //sub class
+            {
+            //class body
+            }
+        </pre>
+    
+    <h3><span class="label label-warning">
+        Hybrid inheritance<br />
+        </span></h3><div class="well">
+    This is the combination of above inheritances.<br /></div>
+
+<style>
+    .prev
+    {
+    }
+</style>

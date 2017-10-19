@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/views/shared/layout3nn.cshtml";
+     var p = Request["page"];
+     p=p==null?"htmlintro":p;
+     try{
+    @RenderPage(Href("~/Views/html/"+p+".cshtml"));
+    @section content{
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+             HTML
+            </a>
+              <a class="list-group-item" href='@Session["sURL"]/html?page=htmlintro'>Introduction</a>
+              <a class="list-group-item" href='@Session["sURL"]/html?page=htmlpre'>pre tag</a>
+              <a class="list-group-item" href='@Session["sURL"]/html?page=htmlbr'>Break Tag</a>
+              <a class="list-group-item" href='@Session["sURL"]/html?page=htmlul'>List Tag</a>
+              <a class="list-group-item" href='@Session["sURL"]/html?page=htmlimg'>Image Tag</a>
+              <a class="list-group-item" href='@Session["sURL"]/html?page=htmltb'>TableTag</a>
+              <a class="list-group-item" href='@Session["sURL"]/html?page=htmlb'>Bold Tag</a>
+              <a class="list-group-item" href='@Session["sURL"]/html?page=htmli'>Italics Tag</a>
+              <a class="list-group-item" href='@Session["sURL"]/html?page=htmlhref'>Hyperlink Tag</a>
+                
+               
+             
+          </div>
+
+    }
+    }
+    catch(Exception e){
+    <h1>the requested page not found </h1>
+    }
+    
+    }
+@section browsersupport{
+   
+    }
+

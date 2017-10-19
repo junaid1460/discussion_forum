@@ -1,0 +1,103 @@
+﻿<h1><span class="label label-success">XML declaration</span></h1>
+<script type="text/javascript">
+    $(function () {
+        $(".list-group.auto li").addClass("list-group-item");
+    });
+</script>
+<div class="well">
+    This chapter covers XML declaration in detail. <br />
+    XML declaration contains details that prepare an XML processor to parse the XML document. <br />
+    It is optional, but when it is used, it must appear in first line of the XML document.<br />
+Syntax<br />
+Following syntax shows XML declaration:
+    <pre>
+&lt ?xml
+version="version_number"
+encoding="encoding_declaration"
+standalone="standalone_status"
+?&gt 
+        </pre>
+    Each parameter consists of a parameter name, an equals sign (=), and parameter value inside a quote.<br />
+     Following table shows the above syntax in detail:<br />
+    <table class="tb">
+        <tr class="thead">
+            <th>Parameter</th>
+            <th>Parameter_value</th>
+            <th>Parameter_description</th>
+        </tr>
+        <tr>
+            <td>Version</td>
+            <td>1.0</td>
+            <td>Specifies the version of the XML standard used.</td>
+
+        </tr>
+        <tr>
+            <td>Encoding</td>
+            <td>UTF-8, UTF-16, ISO-10646-UCS-2, ISO-10646-UCS-4, ISO-8859-1 to ISO-8859-9, ISO-2022-JP, ShiftJIS, EUC-JP</td>
+            <td>It defines the character encoding used in the document. UTF-8 is the default encoding used.</td>
+
+        </tr>
+        <tr>
+            <td>Standalone</td>
+            <td>yes or no</td>
+            <td>It informs the parser whether the
+document relies on the information
+from an external source, such as
+external document type definition
+(DTD), for its content. The default
+value is set to no. Setting it to yes
+tells the processor there are no
+external declarations required for
+parsing the document.</td>
+
+        </tr>
+
+    </table><br />
+    Rules
+An XML declaration should abide with the following rules:<br />
+    <ul class="list-group auto">
+<li> If the XML declaration is present in the XML, it must be placed as the first line
+in the XML document.</li>
+<li> If the XML declaration is included, it must contain version number attribute.</li>
+<li> The Parameter names and values are case-sensitive.</li>
+<li> The names are always in lower case.</li>
+<li> The order of placing the parameters is important. The correct order is:version,
+encoding and standalone.</li>
+<li> Either single or double quotes may be used.</li>
+<li>The XML declaration has no closing tag i.e. &lt /?xml&gt </li>
+        </ul>
+    Example<br />
+    XML declaration with all parameters defined:
+    <pre>
+&lt ?xml version="1.0" encoding="UTF-8" standalone="no" ?&gt 
+        </pre>
+</div>
+<style>
+     .thead th
+    {
+        padding: 5px;
+       
+    }
+    .tb
+    {
+        border-radius:3px;
+       
+        padding:5px;width:100%
+
+    }
+        .tb tbody
+        {
+            padding:10px
+        }
+        .tb tr td
+        {
+           padding:4px;
+           box-shadow:0 0 2px black;
+           margin-left:4px
+        }
+        .tb tr th
+        {
+            font-weight:900;
+           text-shadow:0 2px 3px gray;
+        }
+</style>

@@ -1,0 +1,64 @@
+﻿<h1><span class="label label-success">Input and Output</span></h1>
+<div class="well">
+Input and output are covered in some detail. <br />
+    C allows quite precise control of these. This section discusses input and output from keyboard and screen. <br />
+<pre>
+	The Standard Input Output File 
+	Character Input / Output 
+	getchar 
+	putchar 
+	Formatted Input / Output 
+	printf 
+	scanf 
+	Whole Lines of Input and Output 
+	gets 
+	puts 
+    </pre>
+
+<h3> <span class="label label-warning">scanf() function:</span></h3>
+
+syntax:<br />
+<pre>
+scanf("control string",&vable1,&variable2,..);
+    </pre>
+
+control sting contains the format of data being received.<br />
+  The amperand  symbol before each variaable name is an operator  that specifies the vvariabnames address. <br />
+
+example:<br />
+    <pre>
+scanf"%d",&number);
+        </pre>
+
+
+<h3> <span class="label label-warning">printf() function:</span></h3>
+syntax:<br />
+    <pre>
+printf(“ control string”,arg1arg2);
+        </pre>
+
+Its arguments are, in order; a control string, which controls what gets printed, followed by a list of values to be substituted<br />
+ for entries in the control string<br />
+
+<h3> <span class="label label-warning">getchar() function:</span></h3>
+
+getchar returns the next character of keyboard input as an int.<br />
+     If there is an error then EOF (end of file) is returned instead.<br />
+
+ex:<br />
+    <pre>
+ while((ch = getchar()) != EOF)
+          i ++;
+        </pre>
+
+<h3> <span class="label label-warning">putchar()</span></h3>
+
+putchar puts its character argument on the standard output (usually the screen). <br />
+ex:<br />
+    <pre>
+while((ch = getchar()) != EOF)
+          putchar (toupper(ch));
+  }
+        </pre>
+    </div>
+

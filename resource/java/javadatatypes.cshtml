@@ -1,0 +1,108 @@
+﻿
+<h1>
+    <span  class="label label-success">Data Types</span>
+</h1>
+<script type="text/javascript">
+    $(function () {
+        $(".list-group.auto li").addClass("list-group-item");
+    });
+</script>
+<div class="well">
+Variables are used to reserve memory locations to store values. <br />
+Based on the data type of the variable Operating System allocates 
+memory and decides what can be stored in reserved memory.<br />
+There are basically two categories of data types in Java.</div>
+<ul class="list-group auto">
+<li>Primitive datatypes</li>
+<li>Reference/Object datatypes</li></ul>
+<div class="well"> There are Eight primitive data types in Java which are shown in the table below.</div>
+<table class="tb">
+    <tr class="thead">
+        <th>Data Type</th>
+        <th>Memory size allocated</th>
+        <th>Default Value</th>
+        <th>Example</th>
+    </tr>
+    <tr>
+       <td>byte</td>
+        <td>8 bits</td>
+        <td>0</td>
+        <td>byte a=50;</td>
+    </tr>
+    <tr>
+       <td>short</td>
+        <td>16 bits</td>
+        <td>0</td>
+        <td>short a=100;</td>
+    </tr>
+    <tr>
+       <td>int</td>
+        <td>32 bits</td>
+        <td>0</td>
+        <td>int a=10;</td>
+    </tr>
+    <tr>
+       <td>long</td>
+        <td>64 bits</td>
+        <td>0L</td>
+        <td>long a=5000L;</td>
+    </tr>
+    <tr>
+       <td>float</td>
+        <td>32 bits</td>
+        <td>0.0f</td>
+        <td>float a=50.5f;</td>
+    </tr>
+    <tr>
+       <td>double</td>
+        <td>64 bits</td>
+        <td>0.0</td>
+        <td>double a=500.4;</td>
+    </tr>
+    <tr>
+       <td>boolean</td>
+        <td>1 bit</td>
+        <td>false(or 0)</td>
+        <td>boolean a=true;</td>
+    </tr>
+    <tr>
+       <td>char</td>
+        <td>16 bits</td>
+        <td>null</td>
+        <td>char a='x';</td>
+    </tr>
+</table>
+<h3><span class="label label-warning">Object Types</span></h3><br />
+<div class="well">These are simply the objects using which we access the members of the class.</div>
+<style>
+    .thead th
+    {
+        padding: 5px;
+       
+    }
+    .tb
+    {
+        border-radius:3px;
+       
+        padding:5px;width:100%
+
+    }
+        .tb tbody
+        {
+            padding:10px
+        }
+        .tb tr td
+        {
+           padding:4px;
+           box-shadow:0 0 2px black;
+           margin-left:4px
+        }
+        .tb tr th
+        {
+            font-weight:900;
+           text-shadow:0 2px 3px gray;
+        }
+    .prev
+    {
+    }
+</style>

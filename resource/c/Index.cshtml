@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/views/shared/layout3nn.cshtml";
+     var p = Request["page"];
+     p=p==null?"cintro":p;
+     try{
+    @RenderPage(Href("~/Views/c/"+p+".cshtml"));
+    @section content{
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+             C Programming
+            </a>
+                <a class="list-group-item" href='@Session["sURL"]/c?page=cintro'>Introduction</a>
+                <a class="list-group-item" href='@Session["sURL"]/c?page=cio'>Input and Output statements</a>
+                <a class="list-group-item" href='@Session["sURL"]/c?page=ccnd'>Condition and Loop statements</a>
+               
+             
+          </div>
+
+    }
+    }
+    catch(Exception e){
+    <h1>the requested page not found </h1>
+    }
+    
+    }
+@section browsersupport{
+   
+    }
+

@@ -1,0 +1,89 @@
+﻿<h1><span class="labellabe-success">Data Types in XSLT</span></h1>
+<div class="well">
+    <ul>
+<li> Five data types available: boolean, number, string, node-set, external object.</li>
+<li> addition with XSLT 1.1: result tree fragment (RTF).</li>
+<li> implicit conversion is generally carried out when the context requires it.</li>
+<li> explicit conversion with functions boolean, number, string.</li>
+        </ul>
+    <table class="tb">
+        <tr class="thead">
+            <th>From/To</th>
+            <th>boolean</th>
+            <th>number</th>
+            <th>string</th>
+            <th>node-set</th>
+            <th>external-object</th>
+        </tr>
+        <tr>
+            <td>boolean</td>
+            <td>n.app</td>
+            <td>false-> 0 true->1</td>
+            <td>false->'false' true->'true'</td>
+            <td>n.a.</td>
+            <td>n.a.</td>
+        </tr>
+        <tr>
+            <td>number</td>
+            <td>0->false other->true</td>
+            <td>n.app.</td>
+            <td>decimal</td>
+            <td>n.a.</td>
+            <td>n.a.</td>
+        </tr>
+        <tr>
+            <td>string</td>
+            <td>null->false other->true</td>
+            <td>decimal</td>
+            <td>n.app.</td>
+            <td>n.a.</td>
+            <td>n.a.</td>
+        </tr>
+        <tr>
+            <td>node-set</td>
+            <td>empty->false other->true</td>
+            <td>string() function</td>
+            <td>string value of first node</td>
+            <td>n.app.</td>
+            <td>n.a.</td>
+        </tr>
+        <tr>
+            <td>extenal object</td>
+            <td>n.a.</td>
+            <td>n.a.</td>
+            <td>n.a.</td>
+            <td>n.a.</td>
+            <td>n.app</td>
+        </tr>
+    </table>
+
+    </div>
+<style>
+     .thead th
+    {
+        padding: 5px;
+       
+    }
+    .tb
+    {
+        border-radius:3px;
+       
+        padding:5px;width:100%
+
+    }
+        .tb tbody
+        {
+            padding:10px
+        }
+        .tb tr td
+        {
+           padding:4px;
+           box-shadow:0 0 2px black;
+           margin-left:4px
+        }
+        .tb tr th
+        {
+            font-weight:900;
+           text-shadow:0 2px 3px gray;
+        }
+</style>

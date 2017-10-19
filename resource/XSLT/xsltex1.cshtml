@@ -1,0 +1,20 @@
+﻿<h1><span class="label label-success">Example: Finding the Type of a Node</span></h1>
+<pre>
+&lt xsl:template name="node:type"&gt 
+&lt xsl:param name="node" select="."/&gt 
+&lt xsl:choose&gt 
+&lt xsl:when test="$node/self::*"&gt 
+&lt xsl:text&gt  element &lt /xsl:text&gt 
+&lt /xsl:when&gt 
+&lt xsl:when test="$node/self::text()"&gt 
+&lt xsl:text&gt  text &lt /xsl:text&gt 
+&lt /xsl:when&gt 
+&lt xsl:when test="$node/self::comment()"&gt 
+&lt xsl:text&gt  comment &lt /xsl:text&gt 
+&lt /xsl:when&gt 
+&lt xsl:otherwise&gt 
+&lt xsl:text&gt  processing instruction &lt /xsl:text&gt 
+&lt /xsl:otherwise&gt 
+&lt /xsl:choose&gt 
+&lt /xsl:template&gt 
+    </pre>

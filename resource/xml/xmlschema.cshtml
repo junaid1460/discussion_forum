@@ -1,0 +1,66 @@
+﻿<h1><span class="label label-success">XML Schema</span></h1>
+<div class="well">
+    XML Schema is commonly known as XML Schema Definition (XSD).<br />
+     It is used to
+describe and validate the structure and the content of XML data.<br /> XML schema defines
+the elements, attributes and data types.<br /> Schema element supports Namespaces. <br />It
+is similar to a database schema that describes the data in a database.<br />
+Syntax<br />
+You need to declare a schema in your XML document as follows:
+    <pre>
+&lt xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt 
+        </pre>
+Example<br />
+The following example shows how to use schema:
+    <pre>
+&lt ?xml version="1.0" encoding="UTF-8"?&gt 
+&lt xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt 
+&lt xs:element name="contact"&gt 
+&lt xs:complexType&gt 
+&lt xs:sequence&gt 
+&lt xs:element name="name" type="xs:string" /&gt 
+&lt xs:element name="company" type="xs:string" /&gt 
+&lt xs:element name="phone" type="xs:int" /&gt 
+&lt /xs:sequence&gt 
+&lt /xs:complexType&gt 
+&lt /xs:element&gt 
+&lt /xs:schema&gt 
+        </pre>
+    The basic idea behind XML Schemas is that they describe the legitimate format that an XML document can take.<br />
+Elements<br />
+As we saw in the chapter XML - Elements, elements are the building blocks of XML
+document.<br /> An element can be defined within an XSD as follows:
+    <pre>
+&lt xs:element name="x" type="y"/&gt 
+        </pre>
+Definition Types<br />
+You can define XML schema elements in following ways:<br />
+<b>Simple Type</b> - Simple type element is used only in the context of the text.<br /> Some of
+predefined simple types are: xs:integer, xs:boolean, xs:string, xs:date.<br /> For example:
+    <pre>
+&lt xs:element name="phone_number" type="xs:int" /&gt 
+        </pre>
+<b>Complex Type</b> - A complex type is a container for other element definitions. <br />This
+allows you to specify which child elements an element can contain and to provide<br />
+some structure within your XML documents.<br /> For example:
+    <pre>
+&lt xs:element name="Address"&gt 
+&lt xs:complexType&gt 
+&lt xs:sequence&gt 
+&lt xs:element name="name" type="xs:string" /&gt 
+&lt xs:element name="company" type="xs:string" /&gt 
+&lt xs:element name="phone" type="xs:int" /&gt 
+&lt /xs:sequence&gt 
+&lt /xs:complexType&gt 
+&lt /xs:element&gt 
+        </pre>
+In the above example, Address element consists of child elements. <br />This is a container
+for other &lt xs:element&gt  definitions, that allows to build a simple hierarchy of<br />
+elements in the XML document.<br />
+  <h3><span class="label label-warning">Attributes</span></h3>  
+Attributes in XSD provide extra information within an element.<br /> Attributes have
+name and type property as shown below:
+    <pre>
+&lt xs:attribute name="x" type="y"/&gt 
+        </pre>
+</div>

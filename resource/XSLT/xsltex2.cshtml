@@ -1,0 +1,17 @@
+﻿<h1><span class="label label-success">Ex: Finding the Namespaces of Elements and Attributes</span></h1>
+<pre>
+&lt xsl:template match="*" mode="namespace"&gt 
+&lt xsl:for-each select="namespace::*"&gt 
+&lt xsl:variable name="uri" select="."/&gt 
+&lt xsl:if test="namespace-uri(..) = $uri"&gt 
+&lt p&gt  &lt span style="text-width:bold;color:blue;"&gt 
+&lt xsl:value-of select="name(..)"/&gt 
+&lt span/&gt  is in namespace
+&lt code&gt  &lt a href="$uri"&gt  &lt xsl:value-of select="$uri"/&gt  &lt /a&gt  &lt /code&gt 
+&lt xsl:if test="name()"&gt 
+with prefix &lt code&gt  &lt xsl:value-of select="name()"/&gt  &lt /code&gt 
+&lt /xsl:if&gt  &lt /p&gt 
+&lt /xsl:if&gt 
+&lt /xsl:for-each&gt 
+&lt /xsl:template&gt 
+    </pre>

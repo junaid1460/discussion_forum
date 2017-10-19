@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/views/shared/layout3nn.cshtml";
+     var p = Request["page"];
+     p=p==null?"javaintro":p;
+     try{
+    @RenderPage(Href("~/Views/java/"+p+".cshtml"));
+    @section content{
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+             Java
+            </a>
+                <a class="list-group-item" href='@Session["sURL"]/java?page=javaintro'>Introduction</a>
+                <a class="list-group-item" href='@Session["sURL"]/java?page=javadatatypes'>Data Types</a>
+                <a class="list-group-item" href='@Session["sURL"]/java?page=javaclass'>Class</a>
+                <a class="list-group-item" href='@Session["sURL"]/java?page=javacontrol'>Controls and Loops</a>
+                <a class="list-group-item" href='@Session["sURL"]/java?page=javaexception'>Exception Handling</a>
+                <a class="list-group-item" href='@Session["sURL"]/java?page=javainheritance'>Inheritance</a>
+                <a class="list-group-item" href='@Session["sURL"]/java?page=javainterfaces'>Interfaces</a>
+                <a class="list-group-item" href='@Session["sURL"]/java?page=javapackages'>Packages</a>
+                <a class="list-group-item" href='@Session["sURL"]/java?page=javathreads'>Threads</a>
+                <a class="list-group-item" href='@Session["sURL"]/java?page=javaapplets'>Applets</a>
+
+
+
+
+                
+          </div>
+
+    }
+    }
+    catch(Exception e){
+    <h1>the requested page not found </h1>
+    }
+    
+    }
+@section browsersupport{
+   
+    }
+

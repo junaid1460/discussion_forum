@@ -1,0 +1,88 @@
+﻿<h1>
+    <span  class="label label-success">Packages</span>
+</h1><div class="well">
+    Package is a collection of classes and interfaces grouped together.<br />
+    We can divide packages into two types.<br />
+Java API<br />
+User created packages<br />
+Let's see some of the java packages and classes in those packages.<br /> 
+</div>
+<table class="tb">
+    <tr>
+        <th>Package Name</th>
+        <th>Description</th>
+        <th>Example classes</th>
+    </tr>
+    <tr>
+        <td>java.lang</td>
+        <td>Language support package</td>
+        <td>String,Thread,Boolean etc...</td>
+    </tr>
+    <tr>
+        <td>java.util</td>
+        <td>utility package</td>
+        <td>Date,Time,Vector etc...</td>
+    </tr>
+    <tr>
+        <td>java.awt</td>
+        <td>Gives GUI elements</td>
+        <td>Color,Font,Button,Event etc...</td>
+    </tr>
+    <tr>
+        <td>java.net</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>java.applet</td>
+        <td>Used for java web applets</td>
+        <td>Applet</td>
+    </tr>
+    <tr>
+        <td>java.io</td>
+        <td>input output package</td>
+        <td>DataInputStream,FileInputStream etc...</td>
+    </tr>
+</table>
+<div class="well">
+<h3><span class="label label-warning">Creating your own packages<br /></span></h3>
+To create your own package just place the package statement at the begining of the program.<br />
+Syntax : package package_name;<br />
+Example <br />
+<pre class="prev">
+    package p1;
+    class ab
+    {
+    //Body of the class
+    }
+</pre>
+<h3><span class="label label-warning">Accessing the package</span></h3><br />
+To access the package we need to use the import statements.<br />
+    Syntax : import packagename.className;<br />
+    Example : import java.io.*;  //'*' means everything inside the package io
+There may be one or more packages inside another. We can get inside each package using '.' operator.<br />
+ Syntax : import p1.p2.p3.....pn;
+
+</div>
+<style>
+.tb
+        {
+            padding:10px;
+            width:100%;
+        }
+        .tb tr td
+        {
+           padding:4px;
+           box-shadow:0 0 2px black;
+           margin-left:4px
+        }
+        .tb tr th
+        {
+            font-weight:900;
+           text-shadow:0 2px 3px gray;
+        }
+    .para
+    {
+    }
+
+</style>

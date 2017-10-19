@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/views/shared/layout3nn.cshtml"; <!--bagkground layout-->
+     var p = Request["page"];
+     p=p==null?"xmltintro":p;
+     try{
+    @RenderPage(Href("~/Views/xml/"+p+".cshtml"));
+    @section content{
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+             XML
+            </a>
+                <a class="list-group-item" href='@Session["sURL"]/xml?page=xmlintro'>Introduction</a>
+                <a class="list-group-item" href='@Session["sURL"]/xml?page=xmlsyntax'>XML-Syntax</a>
+                <a class="list-group-item" href='@Session["sURL"]/xml?page=xmldeclaration'>XML-Declaration</a>
+                <a class="list-group-item" href='@Session["sURL"]/xml?page=xmltags'>XML-tags,attributes</a>
+                <a class="list-group-item" href='@Session["sURL"]/xml?page=xmlwntities'>XML-Entities</a>
+                <a class="list-group-item" href='@Session["sURL"]/xml?page=xmlvalidation'>XML-Validation</a>
+                <a class="list-group-item" href='@Session["sURL"]/xml?page=xmlDTD'>DTD</a>
+                <a class="list-group-item" href='@Session["sURL"]/xml?page=xmlschema'>XML-Schema</a>
+             
+          </div>
+
+    }
+    }
+    catch(Exception e){
+    <h1>the requested page not found </h1>
+    }
+    
+    }
+@section browsersupport{
+   
+    }
+

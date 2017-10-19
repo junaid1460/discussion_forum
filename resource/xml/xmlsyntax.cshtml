@@ -1,0 +1,30 @@
+﻿<h1><span class="label label-success">Syntax and Rules</span></h1>
+<script type="text/javascript">
+    $(function () {
+        $(".list-group.auto li").addClass("list-group-item");
+    });
+</script>
+<div class="well">
+    This chapter takes you through the simple syntax rules to write an XML document.<br />
+Following is a complete XML document:<br />
+    <pre>
+&lt ?xml version="1.0"?&gt 
+&lt contact-info&gt 
+&lt name&gt Tanmay Patil&lt /name&gt 
+&lt company&gt bigDot&lt /company&gt 
+&lt phone&gt (011) 123-4567&lt /phone&gt 
+&lt /contact-info&gt 
+        </pre>
+You can notice there are two kinds of information in the above example:<br />
+    <pre>
+ The markup, like &lt contact-info&gt  and
+ The text, or the character data, bigDot and (040) 123-4567.
+        </pre>
+    Syntax Rules for XML declaration<br />
+    <ol class="list-group auto">
+<li> The XML declaration is case sensitive and must begin with "&lt ?xml&gt" where "xml" is written in lower-case.</li>
+<li> If document contains XML declaration, then it strictly needs to be the first statement of the XML document.</li>
+<li> The XML declaration strictly needs be the first statement in the XML document.</li>
+<li> An HTTP protocol can override the value of encoding that you put in the XML declaration.</li>
+        </ol>
+</div>

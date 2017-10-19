@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/views/shared/layout3nn.cshtml";
+     var p = Request["page"];
+     
+     p=p==null?"cssintro":p;
+     try{
+    @RenderPage(Href("~/Views/css/"+p+".vbhtml"));
+    @section content{
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+             CSS properties
+            </a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=cssintro'>css introduction</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=font'>css-font</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=background'>background</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=color'>color</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=boxshadow'>box-shadow</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=textshadow'>text-shadow</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=height'>height,width</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=border'>css-border</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=textalign'>text-align</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=outline'>outline</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=opacity'>opacity</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=padding'>padding</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=cursor'>cursor</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=margin'>margin</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=position'>position</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=zindex'>z-index</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=visibility'>visibility</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=float'>float</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=overflow'>overflow</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=textdecoration'>text-decoration</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=fontweight'>font-weight</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=liststyle'>list-style</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=transition'>transition</a>
+                <a class="list-group-item" href='@Session["sURL"]/css?page=animation'>animation</a>
+          </div>
+
+    }
+    }
+    catch(Exception e){
+    <h1>the requested page not found </h1>
+    }
+    
+    }
+@section browsersupport{
+   
+    }
+

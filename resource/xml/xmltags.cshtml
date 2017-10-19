@@ -1,0 +1,50 @@
+﻿<h1><span class="label label-success">Tags and Elements</span></h1>
+<div class="well">
+    An XML file is structured by several XML-elements, also called XML-nodes or XMLtags.<br />
+XML-elements' names are enclosed by triangular brackets &lt  &gt  as shown below:<br />
+<pre>&lt element&gt 
+    </pre>
+Syntax Rules for Tags and Elements<br />
+Element Syntax: Each XML-element needs to be closed either with start or with end elements as shown below:<br />
+<pre>&lt element&gt ....&lt /element&gt 
+    </pre>
+or in simple-cases, just this way:<br />
+<pre>&lt element/&gt 
+    </pre>
+Nesting of elements: An XML-element can contain multiple XML-elements as its children, but the children elements must<br />
+     not overlap. i.e., an end tag of an element must have the same name as that of the most recent unmatched start tag.<br />
+Following example shows incorrect nested tags:<br />
+    <pre>
+&lt ?xml version="1.0"?&gt 
+&lt contact-info&gt 
+&lt company&gt TutorialsPoint
+&lt contact-info&gt 
+&lt /company&gt
+        </pre> 
+Following example shows correct nested tags:<br />
+    <pre>
+&lt ?xml version="1.0"?&gt 
+&lt contact-info&gt 
+&lt company&gt TutorialsPoint&lt /company&gt 
+&lt contact-info&gt 
+        </pre>
+    Root element: An XML document can have only one root element.<br />
+     For example The following example shows a correctly formed XML document:<br />
+    <pre>
+&lt root&gt 
+&lt x&gt ...&lt /x&gt 
+&lt y&gt ...&lt /y&gt 
+&lt /root&gt 
+        </pre>
+Case sensitivity: The names of XML-elements are case-sensitive. That means the name of the start and the end elements<br />
+  need to be exactly in the same case.<br />
+For example, &lt contact-info&gt  is different from &lt Contact-Info&gt .
+Attributes<br />
+An attribute specifies a single property for the element, using a name/value pair.<br />
+     An XML-element can have one or more attributes. For example:<br />
+<pre>&lt a href="http://www.google.com/"&gt Tutorialspoint!&lt /a&gt 
+
+</pre>
+Here, href is the attribute name and http://www.google.com/ is attribute value.<br />
+
+</div>

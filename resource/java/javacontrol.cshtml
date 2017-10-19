@@ -1,0 +1,94 @@
+﻿<h1><span class="label label-success">Control and Loop Statements</span></h1>
+<div class="well">
+  <h3>  <span class="label label-warning">Control statements</span></h3><br />
+  <h4>  <span class="label label-warning">Simple if</span></h4>
+    Syntax :<br />
+    <pre class="prev">
+        if (booleanExpression)
+        {
+        BlockA
+        }
+    </pre>
+   <h4>  <span class="label label-warning">If else</span></h4>
+    Syntax :<br />
+    <pre class="prev">
+     if (booleanExpression)
+     {
+        BlockA
+     }
+     else
+     {
+        BlockB
+     }
+    </pre>
+    <h4>  <span class="label label-warning">Else if</span></h4>
+    Syntax :<br />
+    <pre class="prev">
+     if (booleanExpression)
+     {
+        BlockA
+     }
+     else if(booleanExpression)
+     {
+        BlockB
+     }
+     else if(booleanExpression)
+     {
+        BlockC
+     }
+     else
+     {
+        BlockD
+     }
+    </pre>
+    <h4>  <span class="label label-warning">Switch</span></h4>
+    Syntax :<br />
+    <pre class="prev">
+switch (TypedExpression )
+{
+case C1 :
+SetOfInstructions1 ;
+break ;
+case C2 :
+SetOfInstructions2 ;
+break ;
+. . .
+case Cn:
+SetOfInstructionsn ;
+break ;
+default :
+SetOfDefaultInstructions ;
+}
+    </pre>
+  <h3>  <span class="label label-warning">Loop statements</span></h3><br />
+    <h4><span class="label label-warning">While</span></h4>
+    Syntax :<br />
+    <pre class="prev">
+    while (boolean_expression)
+    {
+        block_instruction;
+    }
+        </pre>
+This means that while the boolean expression is evaluated to true, the sequence of instructions contained in the block<br />
+  instruction is executed.<br />
+  <h4><span class="label label-warning">Do while</span></h4>
+    Syntax :<br />
+    <pre class="prev">
+    do
+    {
+        block_instruction;
+    }while (boolean_expression)
+        </pre>
+The sequence of instructions contained in the block are executed first then the boolean expression is evaluated<br />
+  instruction is executed.<br />
+    <h4><span class="label label-warning">For</span></h4>
+    Often programmers need to repeat a sequence of instructions by changing some variables by a given increment step.<br />
+     Although this can be done using the former while/do structures, Java provides a more convenient structure: the for loop.<br />
+    Syntax :<br />
+    <pre class="prev">
+   for(initialCondition; booleanPredicate; update)
+    {
+       block_instructions;
+    }
+        </pre>
+</div>

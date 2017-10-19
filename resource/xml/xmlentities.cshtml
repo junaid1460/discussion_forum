@@ -1,0 +1,64 @@
+﻿<h1><span class="label label-success">XML Entities</span></h1>
+<script type="text/javascript">
+    $(function () {
+        $(".list-group.auto li").addClass("list-group-item");
+    });
+    </script>
+<div class="well">
+    This chapter describes the XML Character Entities.<br /> 
+    Before we understand the Character Entities, let us first understand what an XML entity is.<br />
+As put by W3 Consortium the definition of entity is as follows:
+    <pre>
+“The document entity serves as the root of the entity tree and a starting-point
+for an XML processor.”
+    </pre>
+This means, entities are the placeholders in XML. These can be declared in the
+document prolog or in a DTD.<br /> 
+     There are different types of entities and this chapter
+will discuss Character Entity.<br /> 
+Both, the HTML and the XML, have some symbols reserved for their use, which cannot
+be used as content in XML code.<br />  For example, &lt  and &gt  signs are used for opening
+and closing XML tags.<br />  To display these special characters, the character entities are
+used.<br /> 
+There are few special characters or symbols which are not available to be typed
+directly from keyboard. <br /> Character Entities can be used to display those
+symbols/special characters also.<br /> 
+<pre>Types of Character Entities
+</pre>
+There are three types of character entities:<br />
+    <ul class="list-group auto">
+ <li>Predefined Character Entities</li>
+        <li>Numbered Character Entities</li>
+        <li>Named Character Entities</li>
+        </ul>
+ <h3>  <span class="label label-warning"> Predefined Character Entities</span></h3>
+They are introduced to avoid the ambiguity while using some symbols.<br />
+     For example, an ambiguity is observed when less than (&lt ) or greater than (&gt ) symbol is used with<br />
+the angle tag (&lt &gt ). Character entities are basically used to delimit tags in XML.<br />
+Following is a list of pre-defined character entities from XML specification.<br /> These can
+be used to express characters without ambiguity.<br />
+    <ul class="list-group auto">
+<li> Ampersand: &amp;</li>
+<li> Single quote: &apos;</li>
+<li> Greater than: &gt;</li>
+<li> Less than: &lt;</li>
+<li> Double quote: &quot;</li>
+        </ul>
+  <h3>  <span class="label label-warning">  Numeric Character Entities</span></h3>
+The numeric reference is used to refer to a character entity.<br /> Numeric reference can
+either be in decimal or hexadecimal format.<br /> As there are thousands of numeric
+references available, these are a bit hard to remember.<br /> Numeric reference refers to
+the character by its number in the Unicode character set.<br />
+General syntax for decimal numeric reference is:
+    <pre>
+&# decimal number ;
+        </pre>
+General syntax for hexadecimal numeric reference is:
+    <pre>
+&#x Hexadecimal number ;
+        </pre>
+ <h3>  <span class="label label-warning">   Named Character Entity</span></h3>
+As it is hard to remember the numeric characters, the most preferred type of character entity is the named character entity.<br />
+     Here, each entity is identified with a
+name.
+</div>

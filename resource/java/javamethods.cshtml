@@ -1,0 +1,66 @@
+﻿
+<h1>
+    <span  class="label label-success">Methods</span>
+</h1><div class="well">
+A java method is a collection of statements that are grouped together to perform an operation.<br />
+Let's see the general syntax of a method<br />
+<pre class="prev">access_specifier return_type method_name(data_type arg1,data_type arg2...data_type argn)
+      {
+                    //Body of the method
+      }</pre>
+Methods may or may not return a value. The methods which do not return value their return_type can be set to void.<br />
+Consider the following example<br />
+<pre class="prev">
+    public void printName()
+    {
+    System.out.println("Name is Java");
+    }
+</pre>
+This method does not return any value, it will only print the line "Name is Java" when called.<br />
+Let's see another example<br />
+<pre class="prev">
+    public int add(int a,int b)
+    {
+    return a+b;
+    }
+</pre>
+This method returns the value a+b to the calling function.<br />
+In java the execution of the program starts from main() function. the general form of main() is<br />
+<pre class="prev">
+    public static void main(String args[])
+    {
+    // body of main method
+    }
+</pre>
+<span class="label label-warning">Calling methods</span><br />
+There are two ways in which we can call the methods.<br />
+1. Methods which return a value.<br />
+2. Methods which do not return any values.<br />
+Consider the following examples<br />
+<pre class="prev">
+   class exDemo
+   {
+    public void getName()           // Method which do not return any values
+    {
+    System.out.println("Name is Java");
+    }
+    public int add(int a,int b)     //Method which return a value
+    {
+    return a+b;
+    }
+   }
+   public class demo
+   {
+     public static void main(String args[])    // main() method
+    {
+    int x=10,y=30,z;
+    exDemo e=new exDemo();     // Object of exDemo class
+    e.getName();              // Calling method which do not return a value
+    z=e.add(x,y);            // Calling method which return a value
+</pre>
+    </div>
+<style>
+    .prev
+    {
+    }
+</style>

@@ -1,0 +1,85 @@
+
+<h1>
+    <span  class="label label-success">Classes</span>
+</h1>
+<div class="well">Classes are the templates which describes it's Object.
+ In simple words classes are collection of fields(Data Members) and methods(Member Functions).
+Java is an Object Oriented Programming language. Everything in Java are accessed only by Objects.<br>
+Syntax of a class is as follows: <br></div>
+<pre class="prev">
+class class_name [exdends] [super_class_name] // [] is used for inheritance
+{
+int a;   //Field declarations
+public void method1()   //Method declarations
+{
+//Method body
+}
+}
+ </pre>
+<br>
+<div class="well">Let's see how to declare a variable<br>
+In java declaring fields/variables is similar to 'c' and 'c++'.<br>
+Syntax : access_specifier data_type var_name;<br>
+Here access specifiers can be<br>
+1)public : The fields declared as public are accessable everywhere.<br>
+2)private : The fields declared as private are accessable only inside it's own class.<br>
+3)protected : The fields declared as protected are accessable everywhere in the same package but only in subclasses in othe packages.<br>
+4)friendly(Default) : The fields declared as friendly are accessable everywhere in same package and not accessable outside the package.
+  If we don't specify any access specifier it is considered as friendly.<br>
+5)private protected : The fields declared as private protected are accessable only inside same class and subclasses regardless of packages.<br>
+Variables can be divided into following <br />
+   Local Variables : These are the variables declared within a block,methods and their life cycle is only inside that block.<br />
+    Example :</div>
+    <pre class="prev">
+    public void exDemo()
+    {
+    int x=10;
+    System.out.println("x= "+x);
+    }</pre>
+<div class="well">
+    Instance Variables : These are the variables which are declared within a class and instantiated when the class is loaded and can
+    be accessed inside methods,constructors and blocks of that particular class.
+    Example :
+    </div>
+    <pre class="prev">
+    public class exDemo
+    {
+    exDemo()  //Default constructor
+    {
+    x=0;  //Varible accessed inside constructor of same class
+    }
+    int x; 
+    }</pre>
+<div class="well">
+    Class Variables : These are the variables which are declared within the class and outside any method as static. <br />
+Ex : public int a;<br />
+Now as the variables methods are also similarly declared as 'c' and 'c++'.<br></div>
+<pre class="prev">Synatax :
+     access_specifier return_type method_name(data_type arg1,data_type arg2...data_type argn)
+                {
+                    //Body of the method
+                }
+    Ex : public void putInfo(int no)
+            {
+                System.out.println("Number is "+no);
+            }
+</pre>
+<div class="well">
+    Accessing class members<br />
+    If we want to access members of a particular class we need to create object of that class.<br />
+    To create an object general syntax is as follows<br />
+    class_name obj=new class_name("value1","value2"...."value n");<br />
+    class_name : To which class we are creating the object.<br />
+    obj : Name of the object(Just like variable name).<br />
+    new : This is the operator used to allocate memory for the class.<br />
+    value1,value2,...value n : These are the values which are passed to the constructor of that class.<br />
+    After creating the object we can invoke any member of the class using .(dot) operator.
+    Syntax : object_name.classmember;
+</div>
+<style>
+    .prev
+    {
+     
+    }
+
+</style>

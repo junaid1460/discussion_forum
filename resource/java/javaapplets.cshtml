@@ -1,0 +1,113 @@
+﻿<h1><span class="label label-success">Applets</span></h1>
+<script type="text/javascript">
+    $(function () {
+        $(".list-group.auto li").addClass("list-group-item");
+    });
+</script>
+<div class="well">
+    Applets are small java programs that are primarily used in Internet Computing.<br />
+    An applet program is a written as a inheritanceof thejava.applet.Applet class.<br />
+    <ul class="list-group auto">
+<li>There is no main()method in an Applet.</li>
+<li>An applet uses AWT for graphics</li></ul><br />
+    <h3><span class="label label-warning">Life Cycle of an Applet</span></h3>
+    <ul class="list-group auto">
+<li>init: This method is intended for whatever initialization is needed for an applet.</li>
+<li>start: This method is automatically called after init method.<br />
+        It is also called whenever user returns to the page containing the applet after visiting other pages.</li>
+<li>stop: This method is automatically called whenever the user moves away from the page containing applets.<br />
+     This method can be used to stop an animation.</li>
+<li>destroy: This method is only called when the browser shuts down normally.</li>
+ </ul>
+<u>browser visits page containing an applet</u>
+    <ol class="list-group auto">
+<li>browser calls init on that applet</li>
+<li>browser calls start on that applet</li>
+<li>browser goes away from that page</li>
+<li>browser calls stop on that applet</li>
+<li>browser comes back to that page</li>
+<li>browser calls start again on that applet</li>
+<li>browser shuts down</li>
+<li>browser calls destroy on the applet</li>
+        </ol>
+    Now let's see the applet tag inside html document<br />
+    <pre class="prev">
+        &ltAPPLET CODE=“test.class" CODEBASE="example/" WIDTH=460 HEIGHT=160 NAME="buddy" &gt
+&ltPARAM NAME="imageSource" VALUE="images/Beans"&gt &ltPARAM NAME="backgroundColor" VALUE="0xc0c0c0"&gt
+ &ltPARAM NAME="endImage" VALUE=10&gt 
+ &lt/APPLET&gt
+    </pre>
+    Attributes in applet tag.<br />
+    <table class="tb">
+        <tr class="thead">
+            <th>Attribute</th>
+            <th>Explanation</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>Code</td>
+            <td>Name of class file</td>
+            <td>Code=“applet0.class”</td>
+        </tr>
+        <tr>
+            <td>Width</td>
+            <td>Width of applet</td>
+            <td>Width=300</td>
+        </tr>
+           <tr>
+            <td>Height</td>
+            <td>Height of applet</td>
+            <td>Height=300</td>
+        </tr>
+           <tr>
+            <td>Codebase</td>
+            <td>Applet’s Directory</td>
+            <td>Codebase=“/applets”</td>
+        </tr>
+        <tr>
+            <td>alt</td>
+            <td>Alternate text if applet not available</td>
+            <td>Alt=“menu applet”</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>Name of the applet</td>
+            <td>Name=“appletExam”</td>
+        </tr>
+        <tr>
+            <td>Align(top,left,right,bottom)</td>
+            <td>Justify the applet with text</td>
+            <td>Align=“right”</td>
+        </tr>
+
+    </table>
+</div>
+<style>
+    .thead th
+    {
+        padding: 5px;
+       
+    }
+    .tb
+    {
+        border-radius:3px;
+       
+        padding:5px;width:100%
+
+    }
+        .tb tbody
+        {
+            padding:10px
+        }
+        .tb tr td
+        {
+           padding:4px;
+           box-shadow:0 0 2px black;
+           margin-left:4px
+        }
+        .tb tr th
+        {
+            font-weight:900;
+           text-shadow:0 2px 3px gray;
+        }
+</style>

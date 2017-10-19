@@ -1,0 +1,56 @@
+﻿<h1><span class="label label-success">XML Validation</span></h1>
+<script type="text/javascript">
+    $(function () {
+        $(".list-group.auto li").addClass("list-group-item");
+    });
+    </script>
+<div class="well">
+    Validation is a process by which an XML document is validated.<br /> 
+    An XML document is said to be valid if its contents match with the elements, attributes and associated<br />
+document type declaration (DTD), and if the document complies with the constraints
+expressed in it.<br /> Validation is dealt in two ways by the XML parser.<br />
+ They are:
+    <ul class="list-group auto">
+<li> Well-formed XML document</li>
+<li> Valid XML document</li>
+        </ul>
+<h3><span class="label label-warning">Well-formed XML document</span></h3>
+An XML document is said to be well-formed if it adheres to the following rules:<br />
+    <ul class="list-group auto">
+<li> Non DTD XML files must use the predefined character entities for amp(&),apos(single quote), gt(&gt ), lt(&lt ),<br />
+ quot(double quote).</li>
+<li> It must follow the ordering of the tag. i.e., the inner tag must be closed before closing the outer tag.</li>
+<li> Each of its opening tags must have a closing tag or it must be a self ending tag.(&lt title&gt ....&lt /title&gt<br />
+      or &lt title/&gt ).</li>
+<li> It must have only one attribute in a start tag, which needs to be quoted.</li>
+<li> amp(&), apos(single quote), gt(&gt ), lt(&lt ), quot(double quote) entities other than these must be declared.</li>
+    </ul>
+    <h3><span class="label label-warning">Example</span></h3>
+Example of well-formed XML document:
+    <pre>
+&lt ?xml version="1.0" encoding="UTF-8" standalone="yes" ?&gt 
+&lt !DOCTYPE address
+[
+&lt !ELEMENT address (name,company,phone)&gt 
+&lt !ELEMENT name (#PCDATA)&gt 
+&lt !ELEMENT company (#PCDATA)&gt 
+&lt !ELEMENT phone (#PCDATA)&gt 
+]&gt 
+&lt address&gt 
+&lt name&gt Tanmay Patil&lt /name&gt 
+&lt company&gt TutorialsPoint&lt /company&gt 
+&lt phone&gt (011) 123-4567&lt /phone&gt 
+&lt /address&gt 
+        </pre>
+Above example is said to be well-formed as:<br />
+    <ul class="list-group auto">
+<li> It defines the type of document. Here, the document type is element type.</li>
+<li> It includes a root element named as address.</li>
+<li> Each of the child elements among name, company and phone is enclosed in its
+self-explanatory tag.</li>
+<li> Order of the tags is maintained.</li>
+        </ul>
+        <h3><span class="label label-warning">Valid XML Document</span></h3>
+If an XML document is well-formed and has an associated Document Type Declaration (DTD), then it is said to be a<br />
+ valid XML document.<br /> We will study more about DTD in the chapter XML - DTDs.<br />
+</div>

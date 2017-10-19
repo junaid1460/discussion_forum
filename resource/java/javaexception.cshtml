@@ -1,0 +1,35 @@
+﻿<h1>
+    <span  class="label label-success">Exception Handling</span>
+</h1>
+<script type="text/javascript">
+    $(function () {
+        $(".list-group.auto li").addClass("list-group-item");
+    });
+</script>
+<div class="well">
+    Exception can be defined as the error which causes program to stop execution.<br />
+    In java the exceptions are handled by 'Exception' class in 'java.lang' package.<br />
+    Excepyion class has other sub classes and they are as follows<br />
+    <ul class="list-group auto">
+        <li>ArithmeticException</li>
+        <li>IOException</li>
+        <li>ArrayIndexOutOfBoundsException</li>
+        <li>NullPointerException</li>
+        <li>StringIndexOutOfBoundsException</li>
+    </ul>
+    In java the statements which may cause any sort of Exception are put inside try and ctatch block.<br />
+    Syntax of try and catch block is as follows<br />
+    <pre class="prev">
+        try
+        {
+        //Statements which may cause Exception
+        }
+        catch(Exception e)  //e is object of Exception class
+        {
+        //Statements which handle the Exception
+        }
+    </pre>
+    If any Exception occurs in try block the control will go to catch block.<br />
+    Otherwise catch block will be ignored.<br />
+     
+</div>

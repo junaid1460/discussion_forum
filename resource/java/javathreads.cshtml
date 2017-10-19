@@ -1,0 +1,49 @@
+﻿<h1><span class="label label-success">Mutithreading</span>
+</h1>\<div class="well">
+Threading is a facility to allow multiple activities to coexist within a single process.
+Threads are sometimes referred to as lightweight processes. Like processes, threads are independent, concurrent paths of execution<br />
+     through a program, and each thread has its own stack, its own program counter, and its own local variables.<br />
+Every Java program has at least one thread -- the main thread. When a Java program starts, the JVM creates the main thread and<br />
+     calls the program's 'main()' method within that thread.<br />
+    run() method is the heart and soul of thread.<br />
+    init() method is used for initialization.<br />
+    start() method is used to start execution of the thread.<br />
+    Now let's see how to create a thread.<br />
+    Simple method is by extending the Thread class.<br />
+    Consider the following example.
+    <pre class="prev">
+import java.lang.Thread;
+ class Thread1 extends Thread {
+public void run() {
+System.out.println("A");
+System.out.println("B");
+}
+}
+ class Thread2 extends Thread {
+public void run() {
+System.out.println("1");
+System.out.println("2");
+}
+}
+        public class aMain()
+        {
+public static void main(String[] args) {
+new Thread1().start();
+new Thread2().start();
+}
+        }
+    </pre>
+    We have no idea in what order the lines will execute, except that 1 will be printed before 2 and A before B.<br />
+        <h3><span class="label label-warning">sleep()</span></h3>
+The Thread API includes a sleep() method, which will cause the current thread to go into a wait state until the specified amount<br />
+     of time.
+    It can be brought back to active state by calling resume() method.
+    <h3><span class="label label-warning">wait()</span></h3>
+    wait() method is also used block thread tempararly from execution.
+    By calling notify() method thread is brought back to active state.
+      </div>
+<style>
+.prev
+{
+}
+    </style>

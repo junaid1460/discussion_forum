@@ -1,0 +1,57 @@
+﻿<h1>
+    <span  class="label label-success">Interfaces</span>
+</h1>
+<script type="text/javascript">
+    $(function () {
+        $(".list-group.auto li").addClass("list-group-item");
+    });
+    </script>
+<div class="well">Interfaces are similar to classes but the differences are<br /></div>
+<ul class="list-group auto">
+    <li>All the fields in the interface are 'static final'.</li>
+    <li>All methods are abstract.</li>
+    <li>interfaces cannot be instantiated.</li>
+    <li>interfaces are always public</li></ul>
+<div class="well">
+    Let's see the general form of an interface.<br />
+    <pre class="prev">
+        interface interface_name [extends] [superclass/interface]  //[] are optional
+        {
+        static final int a=10;     //Data member/field
+        abstract void demoMeth();  //method
+        }
+    </pre><div class="well">
+    Even if we do not give the keywords static final and abstract, it will be considered as static final and abstract.<br />
+    Interfaces are very useful in implementing multiple inheritance in Java(Java doesn't support multiple inheritance of classes).<br />
+    Interfaces are implemented by classes and extended by another interface. Methods are abstract in interfaces.<br />
+    So the class which implements the interface should give the definitions of the methods.<br />
+    Consider the following example program.<br /></div>
+    <pre class="prev">
+        interface interDemo
+        {
+        int a=10;
+        void display()
+        }
+        class clsInt implements interDemo
+        {
+        void display()
+        {
+        System.out.println("a= "+a);
+        }
+        public class aMain
+        {
+        public static void main(String args[])
+        {
+        clsInt c=new clsInt()
+        c.display();
+        }
+        }
+    </pre>
+</div>
+<style>
+    .prev
+    {
+    }
+</style>
+
+    

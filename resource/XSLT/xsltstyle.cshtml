@@ -1,0 +1,13 @@
+﻿<h1><span class="label label-warning">Stylesheet Structure</span></h1>
+<ul>
+<li> &lt xsl:stylesheet&gt  and &lt xsl:transform&gt  elements.<br />
+the outermost elements of any stylesheet.</li>
+<li> &lt ?xsl:stylesheet?&gt  processing instruction.<br />
+used within an XML source to identify the stylesheet that should be used to process it.</li>
+<li> stylesheet modules, using<br />
+ &lt xsl:include&gt  - textual inclusion of the referenced stylesheet module.<br />
+Example( Chapter 03): sample.xml, principal.xsl, date.xsl, copyright.xsl<br />
+ &lt xsl:import&gt  - the definitions in the imported module have lower import precedence.</li>
+<li> embedded stylesheets - inluded within another XML document,<br />
+typically the document whose style it is defining.</li>
+    </ul>
